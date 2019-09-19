@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#FF9595</color>
+    <color name="salmon">#FF9595</color>
+    <color name="pink">#751515</color>
+    <color name="salmonDark">#B97171</color>
+    <color name="blueDark">#5BA9DD</color>
+    <color name="blueClear">#A5C6E0</color>
+    <color name="white_background">#FCFCFC</color>
+    <color name="grey">#D6D5D5</color>
+    <color name="colorGreen">#6BB18C</color>
+    <color name="colorSandLight">#ECDAAF</color>
+    <color name="colorSand">#EBCB94</color>
+</resources>

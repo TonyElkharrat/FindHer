@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "576576899547",
+    "firebase_url": "https://findher-2f0d3.firebaseio.com",
+    "project_id": "findher-2f0d3",
+    "storage_bucket": "findher-2f0d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576576899547:android:e77fb024813df72cdffffe",
+        "android_client_info": {
+          "package_name": "com.example.findher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576576899547-f5erlk313ub6o3pf35cqg1lpmdld4edl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.findher",
+            "certificate_hash": "2c0fbb2999d7d405c86bf29514b1882ad919016c"
+          }
+        },
+        {
+          "client_id": "576576899547-40b2v94tfas4icpfn0e7994o2u2grmh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh_UKkdlhtos-NJEW2Ru_YPIh-PfkLYG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576576899547-40b2v94tfas4icpfn0e7994o2u2grmh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
