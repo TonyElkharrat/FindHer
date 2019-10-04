@@ -17,30 +17,60 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.findher.R;
 import com.example.findher.api.UserHelper;
+import com.example.findher.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.squareup.picasso.Picasso;
 
 
-public class AccountProfileFragment extends Fragment implements View.OnClickListener, OnFailureListener
+public class AccountProfileFragment extends Fragment implements View.OnClickListener
 {
-   private TextView Name;
-   private ImageView photo_of_user;
+   private TextView userName;
+   private ImageView photoOfUser;
    private Button logOutButton;
    private static final int UPDATE_USERNAME = 30;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.account_profile_fragment,container,false);
-        Name = view.findViewById(R.id.nameOfTheUser);
-        photo_of_user = view.findViewById(R.id.user_photo);
-        logOutButton = view.findViewById(R.id.log_out_btn);
+
+        userName = view.findViewById(R.id.nameOfTheUser);
+        photoOfUser = view.findViewById(R.id.user_photo);
+        logOutButton = view.findViewById(R.id.log_out_btn);        Button button = view.findViewById(R.id.btn_change_name);
+
         logOutButton.setOnClickListener(this);
-        Button button = view.findViewById(R.id.btn_change_name);
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+
+        reference.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                User user = dataSnapshot.getValue(User.class);
+                userName.setText(user.getUserName());
+                Glide.with(AccountProfileFragment.this).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl())
+                        .apply(RequestOptions.circleCropTransform().format(DecodeFormat.PREFER_ARGB_8888).override(Target.SIZE_ORIGINAL)).into(photoOfUser);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener()
         {
@@ -48,43 +78,44 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
             public void onClick(View view)
             {
                 UserHelper.updateUsername("YIUUU",FirebaseAuth.getInstance().getCurrentUser().getUid());
-                Name.setText("YIUUU");
+                userName.setText("YIUUU");
             }
         });
 
         upDateUiWhenCreating();
-        return view;
 
+        return view;
     }
 
     public void upDateUiWhenCreating()
     {
         if(FirebaseAuth.getInstance().getCurrentUser()!=null)
         {
-            if (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null) {
-                Glide.with(this).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()).apply(RequestOptions.circleCropTransform().format(DecodeFormat.PREFER_ARGB_8888).override(Target.SIZE_ORIGINAL)).into(photo_of_user);
+            if (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null)
+            {
+
             }
            String n = FirebaseAuth.getInstance().getCurrentUser().getUid();
             //Name.setText((DocumentSnapshot)UserHelper.getUsersCollection().ge;
         }
     }
 
-    private void updateUsernameInFirebase()
-    {
-
-
-        String username = this.Name.getText().toString();
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null)
-        {
-            if (!username.isEmpty() &&  !username.equals("no username found"))
-            {
-                UserHelper.updateUsername(username, FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnFailureListener
-                        (this)
-                        .addOnSuccessListener(this.updateUIAfterRESTRequestsCompleted(UPDATE_USERNAME));
-            }
-        }
-    }
+//    private void updateUsernameInFirebase()
+//    {
+//
+//
+//        String username = this.Name.getText().toString();
+//
+//        if (FirebaseAuth.getInstance().getCurrentUser() != null)
+//        {
+//            if (!username.isEmpty() &&  !username.equals("no username found"))
+//            {
+//                UserHelper.updateUsername(username, FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnFailureListener
+//                        (this)
+//                        .addOnSuccessListener(this.updateUIAfterRESTRequestsCompleted(UPDATE_USERNAME));
+//            }
+//        }
+//    }
 
     public void onClickLogoutButton()
     {
@@ -101,11 +132,7 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
         }
     }
 
-    @Override
-    public void onFailure(@NonNull Exception e)
-    {
 
-    }
 
     private OnSuccessListener<Void> updateUIAfterRESTRequestsCompleted(final int origin)
     {

@@ -5,9 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:id="@+id/central_layout"
+    tools:context=".Activities.AuthentificationActivity"
     >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Activities.AuthentificationActivity"
+        android:id="@+id/central_layout"
+        android:layout_above="@id/bottom_navigation">
+
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -18,6 +28,7 @@
         android:background="@color/white_background"
         app:elevation="60dp"
         app:itemTextColor="@color/salmon"
+        app:labelVisibilityMode="selected"
         app:menu="@menu/bottom_navigation"
         android:layout_alignParentBottom="true"
         android:elevation="60dp"/>

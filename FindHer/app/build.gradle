@@ -27,19 +27,27 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
     //GLIDE
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
+    //SCREEN SPLASH IMPLEMENTATION
+    implementation 'com.github.glomadrian:Grav:1.1'
     //PICASSO
     implementation 'com.squareup.picasso:picasso:2.71828'
+
 
     //FIREBASE_UI
 
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
     implementation 'com.firebaseui:firebase-ui-firestore:4.3.1'
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

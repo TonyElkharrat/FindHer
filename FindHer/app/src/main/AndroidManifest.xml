@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name=".Activities.MainActivity"
             android:windowSoftInputMode="adjustPan"
             >
             <intent-filter>
@@ -35,8 +35,10 @@
 <!--                <data android:scheme="@string/fb_login_protocol_scheme" />-->
 <!--            </intent-filter>-->
 <!--        </activity>-->
-        <activity android:name=".FindHerActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".Activities.FindHerActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+        <activity android:name=".Activities.AuthentificationActivity"/>
     </application>
 
 </manifest>

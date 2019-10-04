@@ -5,12 +5,13 @@ public class User
     private String userName;
     private String uId;
     private String urlPicture;
-
+    private String status;
 
     public User()
     {
 
     }
+
     public String getUserName() {
         return userName;
     }
@@ -40,5 +41,13 @@ public class User
         this.userName = userName;
         this.uId = uId;
         this.urlPicture = urlPicture;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

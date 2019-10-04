@@ -7,23 +7,18 @@ import java.util.Date;
 public class Message {
 
     private String message;
-    private Date dateCreated;
-    private User userSender;
-    private String urlImage;
+    private Long dateCreated;
+    private String userSender;
+    private String userReceiver;
 
     public Message() { }
 
-    public Message(String message, User userSender) {
+    public Message(String message, Long dateCreated, String userSender, String userReceiver) {
         this.message = message;
+        this.dateCreated = dateCreated;
         this.userSender = userSender;
+        this.userReceiver = userReceiver;
     }
-
-    public Message(String message, String urlImage, User userSender) {
-        this.message = message;
-        this.urlImage = urlImage;
-        this.userSender = userSender;
-    }
-
 
     public String getMessage()
     {
@@ -31,39 +26,38 @@ public class Message {
     }
 
     @ServerTimestamp
-    public Date getDateCreated()
+    public Long getDateCreated()
     {
         return dateCreated;
     }
 
-    public User getUserSender()
+    public String getUserSender()
     {
-
         return userSender;
     }
 
-    public String getUrlImage()
-    {
-        return urlImage;
-    }
 
     public void setMessage(String message)
     {
         this.message = message;
     }
 
-    public void setDateCreated(Date dateCreated)
+    public void setDateCreated(Long dateCreated)
     {
         this.dateCreated = dateCreated;
     }
 
-    public void setUserSender(User userSender)
+    public void setUserSender(String userSender)
     {
         this.userSender = userSender;
     }
 
-    public void setUrlImage(String urlImage)
-    {
-        this.urlImage = urlImage;
+
+    public String getUserReceiver() {
+        return userReceiver;
+    }
+
+    public void setUserReceiver(String userReceiver) {
+        this.userReceiver = userReceiver;
     }
 }
