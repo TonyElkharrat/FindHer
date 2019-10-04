@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.findher.R;
-import com.example.findher.RecyclerViewChat.ContactAdapter;
+import com.example.findher.Adapter.ContactAdapter;
 import com.example.findher.api.MessageHelper;
 import com.example.findher.fragments.AccountProfileFragment;
 import com.example.findher.fragments.DiscussionsFragment;

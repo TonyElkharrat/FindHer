@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.findher.RecyclerViewChat.UserAdapter;
+import com.example.findher.Adapter.UserAdapter;
 import com.example.findher.R;
 import com.example.findher.models.User;
 import com.google.firebase.auth.FirebaseAuth;

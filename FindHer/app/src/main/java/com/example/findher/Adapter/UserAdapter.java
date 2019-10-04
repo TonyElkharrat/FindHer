@@ -1,16 +1,13 @@
-package com.example.findher.RecyclerViewChat;
+package com.example.findher.Adapter;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.findher.R;
 import com.example.findher.fragments.ChatFragment;
 import com.example.findher.models.User;
-import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

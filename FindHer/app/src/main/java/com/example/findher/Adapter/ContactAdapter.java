@@ -1,4 +1,4 @@
-package com.example.findher.RecyclerViewChat;
+package com.example.findher.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

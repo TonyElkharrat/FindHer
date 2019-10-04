@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class AuthentificationActivity extends AppCompatActivity //implements OnFailureListener
+public class AuthentificationActivity extends AppCompatActivity
 {
     private FirebaseAuth mAuth;
 
@@ -65,13 +65,6 @@ public class AuthentificationActivity extends AppCompatActivity //implements OnF
     }
 
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-//    {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        this.handleResponseAfterSignIn(requestCode, resultCode, data);
-//    }
-
     private void createUserInfo()
     {
         reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
@@ -98,30 +91,6 @@ public class AuthentificationActivity extends AppCompatActivity //implements OnF
                 RC_SIGN_IN);
     }
 
-//    private void handleResponseAfterSignIn(int requestCode, int resultCode, Intent data)
-//    {
-//        IdpResponse response = IdpResponse.fromResultIntent(data);
-//
-//        if (requestCode == RC_SIGN_IN)
-//        {
-//            if (resultCode == RESULT_OK)
-//            { // SUCCESS
-//               Intent intent = new Intent(AuthentificationActivity.this,FindHerActivity.class);
-//               startActivity(intent);
-//            }
-//        }
-//    }
 
-//    private void createUserInFirestore()
-//    {
-//        if (FirebaseAuth.getInstance().getCurrentUser() != null)
-//        {
-//
-//            String urlPicture = (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null) ? FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString() : null;
-//            String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-//            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//            UserHelper.createUser(username, uid, urlPicture);
-//        }
-//    }
 
 }

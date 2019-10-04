@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findher.notifier.TextChangedNotifier;
 import com.example.findher.R;
-import com.example.findher.RecyclerViewChat.MessageAdapter;
+import com.example.findher.Adapter.MessageAdapter;
 import com.example.findher.models.Message;
 import com.example.findher.models.User;
 import com.google.firebase.auth.FirebaseAuth;
