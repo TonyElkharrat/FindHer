@@ -19,5 +19,5 @@
         android:textColor="#000"
         android:padding="8dp"
         android:id="@+id/input_user_textview_chat_item"
-        android:background="@drawable/background_message_input"/>
+        android:background="@drawable/background_message_receive"/>
 </RelativeLayout>

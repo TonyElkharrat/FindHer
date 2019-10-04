@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.findher.R;
 import com.example.findher.Adapter.ContactAdapter;
-import com.example.findher.api.MessageHelper;
 import com.example.findher.fragments.AccountProfileFragment;
 import com.example.findher.fragments.DiscussionsFragment;
 import com.example.findher.fragments.ChatFragment;
@@ -24,8 +23,6 @@ import java.util.HashMap;
 public class FindHerActivity extends AppCompatActivity
 {
     BottomNavigationView bottomNavigationView ;
-    ContactFragments contactFragments;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -34,7 +31,6 @@ public class FindHerActivity extends AppCompatActivity
         setContentView(R.layout.home);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
-        this.Initialize();
 
     }
 
@@ -52,7 +48,6 @@ public class FindHerActivity extends AppCompatActivity
                     selectedFragment = new AccountProfileFragment();
                     break;
                 case R.id.home_nav:
-                    selectedFragment = contactFragments;
                     break;
                     case R.id.messages_nav:
                         selectedFragment = new DiscussionsFragment();
@@ -85,34 +80,6 @@ public class FindHerActivity extends AppCompatActivity
 
     }
 
-    public void Initialize()
-    {
-        ContactAdapter.SetListener(new ContactAdapter.onuserClickListener()
-        {
-            @Override
-            public void OnUserClick(String userID)
-            {
-
-                Bundle bundle= new Bundle();
-                MessageHelper.getAllMessageForChat(FirebaseAuth.getInstance().getUid(),userID);
-                bundle.putString("userID",userID);
-                ChatFragment messageFragment =  new ChatFragment();
-                messageFragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,messageFragment).addToBackStack(null).commit();
-            }
-        });
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                contactFragments= new ContactFragments();
-                getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,contactFragments).addToBackStack(null).commit();
-            }
-        })
-        {
-        }.start();
-
-    }
 
     @Override
     public void onResume() {

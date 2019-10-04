@@ -16,20 +16,14 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.findher.R;
-import com.example.findher.api.UserHelper;
 import com.example.findher.models.User;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.squareup.picasso.Picasso;
-
 
 public class AccountProfileFragment extends Fragment implements View.OnClickListener
 {
@@ -77,45 +71,12 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
             @Override
             public void onClick(View view)
             {
-                UserHelper.updateUsername("YIUUU",FirebaseAuth.getInstance().getCurrentUser().getUid());
                 userName.setText("YIUUU");
             }
         });
 
-        upDateUiWhenCreating();
-
         return view;
     }
-
-    public void upDateUiWhenCreating()
-    {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null)
-        {
-            if (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null)
-            {
-
-            }
-           String n = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            //Name.setText((DocumentSnapshot)UserHelper.getUsersCollection().ge;
-        }
-    }
-
-//    private void updateUsernameInFirebase()
-//    {
-//
-//
-//        String username = this.Name.getText().toString();
-//
-//        if (FirebaseAuth.getInstance().getCurrentUser() != null)
-//        {
-//            if (!username.isEmpty() &&  !username.equals("no username found"))
-//            {
-//                UserHelper.updateUsername(username, FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnFailureListener
-//                        (this)
-//                        .addOnSuccessListener(this.updateUIAfterRESTRequestsCompleted(UPDATE_USERNAME));
-//            }
-//        }
-//    }
 
     public void onClickLogoutButton()
     {
@@ -132,22 +93,4 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
         }
     }
 
-
-
-    private OnSuccessListener<Void> updateUIAfterRESTRequestsCompleted(final int origin)
-    {
-        return new OnSuccessListener<Void>()
-        {
-            @Override
-            public void onSuccess(Void aVoid)
-            {
-                switch (origin)
-                {
-                    // 8 - Hiding Progress bar after request completed
-                    case UPDATE_USERNAME:
-                        break;
-                }
-            }
-        };
-    }
 }

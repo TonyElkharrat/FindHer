@@ -61,7 +61,6 @@ public class AuthentificationActivity extends AppCompatActivity
         };
 
         mAuth.addAuthStateListener(mAuthListener);
-
     }
 
 
