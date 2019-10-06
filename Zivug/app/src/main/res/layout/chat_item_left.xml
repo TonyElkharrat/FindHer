@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp"
+    >
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_message_receive"
+        >
+
+        <TextView
+            android:id="@+id/input_user_textview_chat_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello"
+            android:textColor="#000"
+            android:layout_margin="8dp"/>
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:05"
+            android:layout_gravity="bottom"
+            android:textSize="9sp"
+            android:id="@+id/time_message_chat_item"
+            android:textColor="#575555"
+            android:layout_margin="2dp"/>
+        <ImageView
+            android:id="@+id/view_message"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="5dp"
+            android:src="@drawable/double_check" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

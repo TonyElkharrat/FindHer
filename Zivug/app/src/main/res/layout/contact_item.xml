@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/tools"
+    app:cardCornerRadius="25dp"
+    app:cardElevation="10dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="-8dp"
+    app:cardPreventCornerOverlap="false"
+    android:id="@+id/contact_cardview"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop"
+            />
+        ///Contact DEESCRIPTION
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profilePic"
+            android:id="@+id/layout_name_age"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="username"
+                android:id="@+id/nameOfContact"
+                android:textSize="30sp"
+                android:textColor="#000"
+                android:fontFamily="@font/aaa"
+                android:layout_below="@id/profilePic"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=","
+                android:textSize="30sp"
+                android:textColor="#000"
+                android:fontFamily="@font/aaa"
+                android:layout_below="@id/profilePic"
+
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="26"
+                android:id="@+id/ageOfContact"
+                android:textSize="30sp"
+                android:textColor="#000"
+                android:fontFamily="@font/aaa"
+                android:layout_below="@id/profilePic"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paris"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:fontFamily="@font/aaa"
+            android:layout_below="@id/layout_name_age"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
