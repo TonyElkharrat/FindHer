@@ -1,9 +1,5 @@
-package com.example.findher.fragments;
+package com.example.zivug.fragments;
 
-import android.content.res.TypedArray;
-import android.gesture.GestureOverlayView;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.findher.Adapter.UserAdapter;
-import com.example.findher.R;
-import com.example.findher.models.User;
+import com.example.zivug.Adapter.UserAdapter;
+import com.example.zivug.R;
+import com.example.zivug.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

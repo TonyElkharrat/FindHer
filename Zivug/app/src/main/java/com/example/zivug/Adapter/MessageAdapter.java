@@ -1,19 +1,22 @@
-package com.example.findher.Adapter;
+package com.example.zivug.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findher.R;
-import com.example.findher.models.Message;
+import com.bumptech.glide.Glide;
+import com.example.zivug.R;
+import com.example.zivug.models.Message;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         private TextView timeMessage ;
         private CircleImageView profilPicture;
         private ImageView isSeen;
+        private ImageView imageSent;
+        LinearLayout messageLayout;
 
 
         public ViewHolderMessage(@NonNull View itemView)
@@ -49,6 +54,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             message = itemView.findViewById(R.id.input_user_textview_chat_item);
             timeMessage = itemView.findViewById(R.id.time_message_chat_item);
             isSeen = itemView.findViewById(R.id.view_message);
+            messageLayout = itemView.findViewById(R.id.messageLayout);
+            imageSent = itemView.findViewById(R.id.image_sent);
         }
 
     }
@@ -81,9 +88,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         if(!allMessages.get(position).getUserReceiver().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
         {
-            if (!allMessages.get(position).getIsRead()) {
+            if (!allMessages.get(position).getIsRead())
+            {
                 holder.isSeen.setImageResource(R.drawable.double_check);
-            } else
+            }
+
+            else
             {
                 holder.isSeen.setImageResource(R.drawable.double_check_read);
             }
@@ -94,6 +104,31 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             holder.isSeen.setVisibility(View.INVISIBLE);
         }
 
+        if(message.getType().equals("image"))
+        {
+            holder.message.setVisibility(View.INVISIBLE);
+            Glide.with(context).load(message.getMessage()).into(holder.imageSent);
+
+
+//            if(!message.getUserSender().equals(FirebaseAuth.getInstance().getCurrentUser()))
+//            {
+//                context.getResources().getDrawable(R.drawable.ic_message_background_image_receiver);
+//                holder.messageLayout.setBackground(context.getResources().getDrawable(R.drawable.ic_message_background_image_receiver));
+//            }
+//
+//            else
+//            {
+//                holder.messageLayout.setBackground(context.getResources().getDrawable(R.drawable.ic_message_background_image_sender));
+//
+//            }
+
+        }
+        else
+        {
+            holder.message.setVisibility(View.VISIBLE);
+            holder.imageSent.setVisibility(View.GONE);
+
+        }
 
     }
 
@@ -107,6 +142,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public int getItemViewType(int position)
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if(allMessages.get(position).getUserSender().equals(user.getUid()))
         {
             return MSG_TYPE_RIGHT;

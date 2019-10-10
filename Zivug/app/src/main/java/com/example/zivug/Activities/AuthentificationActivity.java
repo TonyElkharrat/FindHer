@@ -1,4 +1,4 @@
-package com.example.findher.Activities;
+package com.example.zivug.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +8,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.example.findher.R;
+import com.example.zivug.ChatNotification;
+import com.example.zivug.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -26,6 +27,7 @@ public class AuthentificationActivity extends AppCompatActivity
 
     DatabaseReference reference;
     private CoordinatorLayout coordinatorLayout;
+    StorageReference storageReference;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
     public  static final int RC_SIGN_IN = 1;
@@ -49,8 +51,10 @@ public class AuthentificationActivity extends AppCompatActivity
                 if (user != null)
                 {
                     Intent intent = new Intent(AuthentificationActivity.this, FindHerActivity.class);
-                    //createUserInFirestore();
-                     createUserInfo();
+
+                   storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
+                    final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
+                    startService(newIntent);
                     startActivity(intent);
                 }
                 else
@@ -61,18 +65,6 @@ public class AuthentificationActivity extends AppCompatActivity
         };
 
         mAuth.addAuthStateListener(mAuthListener);
-    }
-
-
-    private void createUserInfo()
-    {
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("uId",FirebaseAuth.getInstance().getCurrentUser().getUid());
-        hashMap.put("userName",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        hashMap.put("urlPicture",FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
-        hashMap.put("status","online");
-        reference.setValue(hashMap);
     }
 
     private void startSignInActivity()

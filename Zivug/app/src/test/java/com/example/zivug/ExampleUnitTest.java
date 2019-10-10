@@ -1,4 +1,4 @@
-package com.example.findher;
+package com.example.zivug;
 
 import org.junit.Test;
 

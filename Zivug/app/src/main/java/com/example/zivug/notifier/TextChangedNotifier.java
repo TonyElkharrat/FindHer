@@ -1,4 +1,4 @@
-package com.example.findher.notifier;
+package com.example.zivug.notifier;
 
 import android.text.Editable;
 import android.text.TextWatcher;

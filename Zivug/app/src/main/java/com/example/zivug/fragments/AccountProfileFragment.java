@@ -1,10 +1,9 @@
-package com.example.findher.fragments;
+package com.example.zivug.fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +19,22 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-import com.example.findher.R;
-import com.example.findher.models.User;
+import com.example.zivug.R;
+import com.example.zivug.models.User;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -44,6 +48,8 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
     private Button logOutButton;
     private final int GALLERY_PIC=1;
     private static final int UPDATE_USERNAME = 30;
+    private StorageReference storageReference;
+    DatabaseReference rootReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
 
     @Nullable
     @Override
@@ -53,22 +59,20 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
 
         userName = view.findViewById(R.id.nameOfTheUser);
         photoOfUser = view.findViewById(R.id.user_photo);
-        logOutButton = view.findViewById(R.id.log_out_btn);        Button button = view.findViewById(R.id.btn_change_name);
+        logOutButton = view.findViewById(R.id.log_out_btn);
 
         logOutButton.setOnClickListener(this);
         photoOfUser.setOnClickListener(this);
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
-        reference.addValueEventListener(new ValueEventListener()
+        rootReference.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 User user = dataSnapshot.getValue(User.class);
                 userName.setText(user.getUserName());
-                setPhotoProfile(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl());
+                setPhotoProfile(user.getUrlPicture());
 
             }
 
@@ -79,15 +83,7 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                userName.setText("YIUUU");
-            }
-        });
-
+        storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
         return view;
     }
 
@@ -99,10 +95,6 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
 
     private void retreivePictureFromGallery()
     {
-//        Intent galleryIntent = new Intent();
-//        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-//        galleryIntent.setType("image/*");
-//        startActivityForResult(galleryIntent,GALLERY_PIC);
         CropImage.activity()
                 .start(getContext(), this);
     }
@@ -111,27 +103,54 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLERY_PIC && resultCode ==RESULT_OK && data!=null)
-        {
-            Uri imageUri = data.getData();
-            CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1,1)
-                    .start(getActivity());
-        }
 
-        else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
         {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
+
+            if (resultCode == RESULT_OK)
+            {
+
                 try {
-                    final Uri imageUri = data.getData();
-                    final InputStream imageStream = getActivity().getContentResolver().openInputStream(resultUri);
+                    final Uri imageUri = result.getUri();
+                    final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
                     final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                     setPhotoProfile(selectedImage);
+                    final StorageReference filePath = storageReference.child(FirebaseAuth.getInstance().getUid()+".jpg");
+                    filePath.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task)
+                        {
+                            if(task.isSuccessful())
+                            {
+                                filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri)
+                                    {
+                                        String downloadUrl = uri.toString();
+                                        rootReference.child("urlPicture")
+                                                .setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task)
+                                            {
+                                                if(task.isSuccessful())
+                                                {
+                                                    int a =0;
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                            else
+                            {
+                              int c =0;
+                            }
+                        }
+                    });
+                }
 
-                } catch (FileNotFoundException e)
+                catch (FileNotFoundException e)
                 {
                     e.printStackTrace();
                 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,9 +15,18 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_message_background_sender"
-        android:layout_alignParentEnd="true">
-
+        android:background="@drawable/ic_message_background_receiver"
+        android:layout_alignParentEnd="true"
+        android:weightSum="66"
+        android:id="@+id/messageLayout">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/image_sent"
+            android:scaleType="fitXY"
+            android:layout_weight="0.1"
+            android:layout_margin="20dp"/>
         <TextView
             android:id="@+id/input_user_textview_chat_item"
             android:layout_width="wrap_content"

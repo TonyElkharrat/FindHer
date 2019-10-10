@@ -1,4 +1,4 @@
-package com.example.findher.Adapter;
+package com.example.zivug.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findher.R;
-import com.example.findher.models.User;
+import com.example.zivug.R;
+import com.example.zivug.models.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

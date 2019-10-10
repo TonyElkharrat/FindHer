@@ -1,7 +1,6 @@
-package com.example.findher.Adapter;
+package com.example.zivug.Adapter;
 
 import android.content.Context;
-import android.media.MediaExtractor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +13,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findher.R;
-import com.example.findher.fragments.ChatFragment;
-import com.example.findher.models.Message;
-import com.example.findher.models.User;
+import com.example.zivug.R;
+import com.example.zivug.fragments.ChatFragment;
+import com.example.zivug.models.Message;
+import com.example.zivug.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-    <manifest package="com.example.findher" xmlns:android="http://schemas.android.com/apk/res/android">
+    <manifest package="com.example.zivug" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -11,8 +11,9 @@
 
     <application android:theme="@style/AppTheme" android:supportsRtl="true" android:roundIcon="@mipmap/ic_launcher_round" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:allowBackup="true">
 
+        <service android:name=".ChatNotification"/>
 
-    <activity android:name=".Activities.MainActivity" android:windowSoftInputMode="adjustPan">
+    <activity android:name="com.example.zivug.Activities.MainActivity" android:windowSoftInputMode="adjustPan">
 
 
     <intent-filter>
@@ -25,12 +26,13 @@
 
 </activity>
 
-    <activity android:name=".Activities.FindHerActivity" android:windowSoftInputMode="adjustResize"/>
+    <activity android:name="com.example.zivug.Activities.FindHerActivity" android:windowSoftInputMode="adjustResize" />
 
-    <activity android:name=".Activities.AuthentificationActivity"/>
+    <activity android:name="com.example.zivug.Activities.AuthentificationActivity"/>
 
     <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" android:theme="@style/Base.Theme.AppCompat"/>
 
 </application>
+
 
 </manifest>

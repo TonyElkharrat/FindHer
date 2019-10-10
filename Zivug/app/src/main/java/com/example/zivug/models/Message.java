@@ -1,4 +1,4 @@
-package com.example.findher.models;
+package com.example.zivug.models;
 
 public class Message {
 
@@ -7,6 +7,7 @@ public class Message {
     private String userSender;
     private String userReceiver;
     private boolean isRead;
+    private  String type;
 
 
     public Message()
@@ -14,13 +15,14 @@ public class Message {
 
     }
 
-    public Message(String message, String dateCreated, String userSender, String userReceiver, Boolean isRead) {
+    public Message(String message, String dateCreated, String userSender, String userReceiver, Boolean isRead, String type) {
         this.message = message;
         this.dateCreated = dateCreated;
         this.userSender = userSender;
         this.userReceiver = userReceiver;
         this.isRead = isRead;
 
+        this.type = type;
     }
 
     public String getMessage()
@@ -69,5 +71,13 @@ public class Message {
 
     public void setIsRead(Boolean read) {
         isRead = read;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 }

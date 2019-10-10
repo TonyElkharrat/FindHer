@@ -50,14 +50,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:layout_gravity="center"
             android:layout_below="@id/nameOfPartner_chat_layout"
             android:layout_centerHorizontal="true"
             android:text=""
             android:id="@+id/status_Of_user"
-            android:textStyle="italic"
-            android:fontFamily="@font/aaaaa"
+            android:fontFamily="@font/aa"
             />
 
 
@@ -99,12 +98,11 @@
             android:id="@+id/chat_add_file_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:background="?android:selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_attachments"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            />
+            android:adjustViewBounds="true"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_attach" />
 
         <!-- TEXT MESSAGE EDIT TEXT -->
         <EditText

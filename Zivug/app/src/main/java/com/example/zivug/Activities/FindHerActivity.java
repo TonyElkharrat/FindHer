@@ -1,5 +1,6 @@
-package com.example.findher.Activities;
+package com.example.zivug.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -8,11 +9,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.findher.R;
-import com.example.findher.Adapter.ContactAdapter;
-import com.example.findher.fragments.AccountProfileFragment;
-import com.example.findher.fragments.DiscussionsFragment;
-import com.example.findher.fragments.ChatFragment;
+import com.example.zivug.Api.TimeHelper;
+import com.example.zivug.ChatNotification;
+import com.example.zivug.R;
+import com.example.zivug.fragments.AccountProfileFragment;
+import com.example.zivug.fragments.DiscussionsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +32,7 @@ public class FindHerActivity extends AppCompatActivity
         setContentView(R.layout.home);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
+
 
     }
 
@@ -90,7 +92,7 @@ public class FindHerActivity extends AppCompatActivity
     @Override
     public void onPause() {
         super.onPause();
-        setStatus("offline");
+        setStatus("last seen at : "+TimeHelper.getTime());
     }
 
     private void setStatus(String status)
