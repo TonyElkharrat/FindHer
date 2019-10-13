@@ -157,15 +157,10 @@ public class ChatFragment extends Fragment implements View.OnClickListener
     private void readMessages()
     {
 
-
-                MessageAdapter adapter = new MessageAdapter(getContext(), allMessage);
+               MessageAdapter adapter = new MessageAdapter(getContext(), allMessage);
                 recyclerView.smoothScrollToPosition(adapter.getItemCount());
                 recyclerView.scrollToPosition(adapter.getItemCount() - 1);
                 recyclerView.setAdapter(adapter);
-
-
-
-
 
     }
 

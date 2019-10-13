@@ -48,6 +48,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViwHolderUser>
         private TextView lastMessage;
         private  TextView timeLastMessage;
         private  ImageView checkLastMessage;
+        private  ImageView photoContent;
 
         public ViwHolderUser(@NonNull View itemView)
         {
@@ -57,6 +58,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViwHolderUser>
             lastMessage = itemView.findViewById(R.id.last_message_Textview);
             timeLastMessage = itemView.findViewById(R.id.time_last_message_Textview);
             checkLastMessage = itemView.findViewById(R.id.double_check_discussion_item);
+            photoContent = itemView.findViewById(R.id.photo_content);
 
             itemView.setOnClickListener(new View.OnClickListener()
             {
@@ -87,11 +89,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViwHolderUser>
     public void onBindViewHolder(@NonNull ViwHolderUser holder, int position)
     {
         holder.partnerName.setText(allPartnerDiscussion.get(position).getUserName());
-        setLastMessageInfo(allPartnerDiscussion.get(position).getuId(),holder.lastMessage,holder.timeLastMessage,holder.checkLastMessage);
+        setLastMessageInfo(allPartnerDiscussion.get(position).getuId(),holder.lastMessage,holder.timeLastMessage,holder.checkLastMessage,holder.photoContent);
         Picasso.get().load(allPartnerDiscussion.get(position).getUrlPicture()).into(holder.partnerPictureUrl);
     }
 
-    private void setLastMessageInfo(final String userId, final TextView lastMessage, final TextView timeLastMessage, final ImageView doubleCheckLastMessage)
+    private void setLastMessageInfo(final String userId, final TextView lastMessage, final TextView timeLastMessage, final ImageView doubleCheckLastMessage,final ImageView photoContent)
     {
         timeLastMessage.setText("");
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
@@ -99,16 +101,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViwHolderUser>
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
                     Message message = snapshot.getValue(Message.class);
 
                     if (message != null)
                     {
                         if (message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getUserSender().equals(userId) || message.getUserReceiver().equals(userId) && message.getUserSender().equals(FirebaseAuth.getInstance().getUid()))
                         {
-                            setMessageInfo(message,lastMessage,doubleCheckLastMessage);
+                            setMessageInfo(message,lastMessage,doubleCheckLastMessage,photoContent);
                             setTimeInfo(message,timeLastMessage);
                         }
+
                     }
                 }
             }
@@ -121,10 +125,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViwHolderUser>
         });
     }
 
-    private void setMessageInfo(Message message, TextView lastMessage,ImageView doubleCheckLastMessage)
+    private void setMessageInfo(Message message, TextView lastMessage,ImageView doubleCheckLastMessage,ImageView photoContent)
     {
-        String s = message.getMessage();
-        String ds = message.getUserSender();
 
         if(message.getUserSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
         {
@@ -145,7 +147,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViwHolderUser>
             doubleCheckLastMessage.setVisibility(View.GONE);
         }
 
-        lastMessage.setText(message.getMessage());
+        if(message.getType().equals("text"))
+        {
+            lastMessage.setText(message.getMessage());
+            photoContent.setVisibility(View.GONE);
+
+        }
+
+        else
+        {
+            lastMessage.setText("Photo");
+            photoContent.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setTimeInfo( Message message,TextView lastMessage)

@@ -6,8 +6,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:background="@color/salmon"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/background_layout">
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -17,13 +17,7 @@
             android:scaleType="fitXY"
             />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_add"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            />
+
 
         <ImageView
             android:layout_width="120dp"
@@ -37,7 +31,7 @@
             android:layout_below="@id/fontCircle"
             android:layout_centerInParent="true"
             android:textSize="30sp"
-            android:textColor="#FFFF"
+            android:textColor="#000"
             android:text=""
             android:fontFamily="@font/aaa"
             />
@@ -47,14 +41,26 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Log out"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:background="@drawable/selector_log_out"
-        android:textColor="#FFFF"
+        android:background="@drawable/logout_shape"
+        android:textColor="#000"
         android:fontFamily="@font/aaaaaaa"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="20dp"
         android:elevation="30dp"
         android:id="@+id/log_out_btn"/>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/background_layout"
+    android:id="@+id/recycler_view_account_profil"
+    android:layout_margin="5dp"
+    android:layout_above="@id/log_out_btn"
+    />
 
 
 

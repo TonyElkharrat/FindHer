@@ -125,7 +125,7 @@ public class ChatNotification extends Service
         bigText.setSummaryText("New message from Zivug");
 
         mBuilder.setContentIntent(pendingIntent);
-        mBuilder.setSmallIcon(R.drawable.ic_love_message);
+        mBuilder.setSmallIcon(R.drawable.ic_romantic_message);
         mBuilder.setContentTitle("Your Title");
         mBuilder.setContentText("");
         mBuilder.setPriority(Notification.PRIORITY_MAX);

@@ -14,6 +14,7 @@ import com.example.zivug.ChatNotification;
 import com.example.zivug.R;
 import com.example.zivug.fragments.AccountProfileFragment;
 import com.example.zivug.fragments.DiscussionsFragment;
+import com.example.zivug.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +31,9 @@ public class FindHerActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+        getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,new HomeFragment()).addToBackStack(null).commit();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
-
 
     }
 
@@ -46,10 +47,10 @@ public class FindHerActivity extends AppCompatActivity
             switch (menuItem.getItemId())
             {
                 case R.id.profile_nav :
-
                     selectedFragment = new AccountProfileFragment();
                     break;
                 case R.id.home_nav:
+                    selectedFragment = new HomeFragment();
                     break;
                 case R.id.messages_nav:
                     selectedFragment = new DiscussionsFragment();

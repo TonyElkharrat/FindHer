@@ -14,8 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android" >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/profilePic"
@@ -25,7 +24,7 @@
             android:scaleType="centerCrop"
             />
         ///Contact DEESCRIPTION
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/profilePic"
@@ -44,7 +43,6 @@
                 android:textSize="30sp"
                 android:textColor="#000"
                 android:fontFamily="@font/aaa"
-                android:layout_below="@id/profilePic"
 
                 />
             <TextView
@@ -54,8 +52,9 @@
                 android:textSize="30sp"
                 android:textColor="#000"
                 android:fontFamily="@font/aaa"
-                android:layout_below="@id/profilePic"
+                android:layout_toEndOf="@id/nameOfContact"
 
+                android:id="@+id/psik"
                 android:layout_gravity="center"
                 />
             <TextView
@@ -66,12 +65,21 @@
                 android:textSize="30sp"
                 android:textColor="#000"
                 android:fontFamily="@font/aaa"
-                android:layout_below="@id/profilePic"
+                android:layout_toEndOf="@id/psik"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/message_contact"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toEndOf="@id/ageOfContact"
+                android:layout_centerInParent="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_chat" />
+
+        </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

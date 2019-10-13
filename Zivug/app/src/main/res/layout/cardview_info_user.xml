@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:contentPadding="2dp"
+    android:layout_margin="2dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="15dp"
+    app:cardUseCompatPadding="true"
+    android:id="@+id/card_view_info">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Level of Religion :"
+    android:layout_margin="10dp"
+    android:textColor="#000"
+    android:textSize="25sp"
+    android:fontFamily="@font/aaaa"
+    android:id="@+id/level_Of_Religion_cardview"/>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Age : "
+        android:textSize="25sp"
+        android:fontFamily="@font/aaaa"
+        android:layout_margin="10dp"
+        android:textColor="#000"
+        android:id="@+id/age_cardView"/>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="E-mail : "
+        android:layout_margin="10dp"
+        android:fontFamily="@font/aaaa"
+        android:textColor="#000"
+        android:id="@+id/email_cardView"
+        android:textSize="25sp"
+        />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -32,6 +32,11 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     //GLIDE
 
+    //ANIMATION
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    implementation 'com.github.varunest:sparkbutton:1.0.6'
+
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 

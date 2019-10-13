@@ -31,6 +31,7 @@ public class AuthentificationActivity extends AppCompatActivity
 
     private FirebaseAuth.AuthStateListener mAuthListener;
     public  static final int RC_SIGN_IN = 1;
+
     List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build() );
 
     @Override
@@ -52,7 +53,7 @@ public class AuthentificationActivity extends AppCompatActivity
                 {
                     Intent intent = new Intent(AuthentificationActivity.this, FindHerActivity.class);
 
-                   storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
+                    storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
                     final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
                     startService(newIntent);
                     startActivity(intent);
@@ -72,12 +73,12 @@ public class AuthentificationActivity extends AppCompatActivity
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
-                        .setTheme(R.style.LoginTheme)
+                        .setTheme(R.style.AppTheme)
                         .setAvailableProviders(
                                 Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build(), new AuthUI.IdpConfig.FacebookBuilder().build(),
                                         new AuthUI.IdpConfig.GoogleBuilder().build())) // SUPPORT GOOGLE
                         .setIsSmartLockEnabled(false, true)
-                        .setLogo(R.drawable.ic_launcher_background)
+                        .setLogo(R.drawable.hello)
                         .build(),
                 RC_SIGN_IN);
     }

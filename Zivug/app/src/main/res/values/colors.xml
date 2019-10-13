@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#FF9595</color>
     <color name="salmon">#FF9595</color>
-    <color name="pink">#751515</color>
+    <color name="pink">#5E2F2F</color>
+    <color name="greyDark">#C2C4C4</color>
     <color name="salmonDark">#B97171</color>
     <color name="blueDark">#5BA9DD</color>
     <color name="blueClear">#A5C6E0</color>

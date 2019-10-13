@@ -58,6 +58,15 @@
                     android:layout_marginTop="5dp"
                     android:visibility="gone"
                     android:id="@+id/double_check_discussion_item"/>
+                <ImageView
+                    android:id="@+id/photo_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_photo_camera_black_24dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="invisible"
+                    android:layout_marginBottom="15dp"/>
 
                 <TextView
                     android:id="@+id/last_message_Textview"

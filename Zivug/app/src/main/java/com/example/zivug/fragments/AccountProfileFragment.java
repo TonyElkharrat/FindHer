@@ -14,11 +14,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.example.zivug.Adapter.AccountProfilAdapter;
 import com.example.zivug.R;
 import com.example.zivug.models.User;
 
@@ -38,6 +41,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -46,9 +50,10 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
     private TextView userName;
     private ImageView photoOfUser;
     private Button logOutButton;
+    RecyclerView recyclerView;
     private final int GALLERY_PIC=1;
     private static final int UPDATE_USERNAME = 30;
-    private StorageReference storageReference;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
     DatabaseReference rootReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
 
     @Nullable
@@ -60,11 +65,34 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
         userName = view.findViewById(R.id.nameOfTheUser);
         photoOfUser = view.findViewById(R.id.user_photo);
         logOutButton = view.findViewById(R.id.log_out_btn);
-
+        recyclerView = view.findViewById(R.id.recycler_view_account_profil);
+        AccountProfilAdapter accountProfilAdapter = new AccountProfilAdapter(getContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(accountProfilAdapter);
         logOutButton.setOnClickListener(this);
         photoOfUser.setOnClickListener(this);
 
+        changeUserProfilListener();
 
+
+        return view;
+    }
+
+    public void onClickLogoutButton()
+    {
+        FirebaseAuth.getInstance().signOut();
+    }
+
+
+    private void retreivePictureFromGallery()
+    {
+        CropImage.activity()
+                .start(getContext(), this);
+    }
+
+    private  void changeUserProfilListener()
+    {
         rootReference.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -82,23 +110,7 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
 
             }
         });
-
-        storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
-        return view;
     }
-
-    public void onClickLogoutButton()
-    {
-        FirebaseAuth.getInstance().signOut();
-    }
-
-
-    private void retreivePictureFromGallery()
-    {
-        CropImage.activity()
-                .start(getContext(), this);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
