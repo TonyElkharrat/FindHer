@@ -2,6 +2,7 @@ package com.example.zivug.fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,6 +54,7 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
     private ImageView photoOfUser;
     private Button logOutButton;
     RecyclerView recyclerView;
+    ImageView settingsButton;
     private final int GALLERY_PIC=1;
     private static final int UPDATE_USERNAME = 30;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
@@ -65,6 +69,8 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
         userName = view.findViewById(R.id.nameOfTheUser);
         photoOfUser = view.findViewById(R.id.user_photo);
         logOutButton = view.findViewById(R.id.log_out_btn);
+        settingsButton = view.findViewById(R.id.settings_btn);
+        settingsButton.setOnClickListener(this);
         recyclerView = view.findViewById(R.id.recycler_view_account_profil);
         AccountProfilAdapter accountProfilAdapter = new AccountProfilAdapter(getContext());
         recyclerView.setHasFixedSize(true);
@@ -188,6 +194,11 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
         else if(view.getId() == R.id.user_photo)
         {
             retreivePictureFromGallery();
+        }
+        else if(view.getId() == R.id.settings_btn)
+        {
+            FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.central_layout,new SettingsFragment()).addToBackStack(null).commit();
         }
     }
 

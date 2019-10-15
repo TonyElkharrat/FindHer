@@ -25,16 +25,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     //CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     //GLIDE
-
+    implementation "androidx.legacy:legacy-preference-v14:1.0.0"
+    implementation "androidx.preference:preference:1.0.0"
     //ANIMATION
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
+//Preference Fragment
+    implementation 'com.takisoft.fix:preference-v7:25.3.0.0'
     implementation 'com.github.varunest:sparkbutton:1.0.6'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
