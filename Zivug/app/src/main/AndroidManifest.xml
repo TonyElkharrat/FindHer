@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
     <application android:theme="@style/AppTheme" android:supportsRtl="true" android:roundIcon="@mipmap/ic_launcher_round" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:allowBackup="true">
@@ -26,7 +27,7 @@
 
 </activity>
 
-    <activity android:name="com.example.zivug.Activities.FindHerActivity" android:windowSoftInputMode="adjustResize" />
+    <activity android:name="com.example.zivug.Activities.ZivugActivity" android:windowSoftInputMode="adjustResize" />
 
     <activity android:name="com.example.zivug.Activities.AuthentificationActivity"/>
 

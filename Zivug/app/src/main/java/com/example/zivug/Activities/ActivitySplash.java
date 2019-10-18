@@ -2,7 +2,6 @@ package com.example.zivug.Activities;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +33,7 @@ public class ActivitySplash extends AppCompatActivity {
             @Override
             public void run() {
                 //Do any action here. Now we are moving to next page
-                Intent mySuperIntent = new Intent(ActivitySplash.this, AuthentificationActivity.class);
+                Intent mySuperIntent = new Intent(ActivitySplash.this, ZivugActivity.class);
                 startActivity(mySuperIntent);
 
                 finish();

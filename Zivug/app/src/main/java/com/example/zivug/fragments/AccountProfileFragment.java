@@ -88,6 +88,7 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
     public void onClickLogoutButton()
     {
         FirebaseAuth.getInstance().signOut();
+        getActivity().finish();
     }
 
 

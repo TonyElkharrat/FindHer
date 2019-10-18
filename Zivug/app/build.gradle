@@ -36,16 +36,25 @@ dependencies {
     //ANIMATION
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
-//Preference Fragment
+    //Bottom BAr
+    implementation 'com.github.iammert:ReadableBottomBar:0.2'
+    // REFRESH
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    //Preference Fragment
     implementation 'com.takisoft.fix:preference-v7:25.3.0.0'
     implementation 'com.github.varunest:sparkbutton:1.0.6'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
+     //LocationHelper
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
     //SCREEN SPLASH IMPLEMENTATION
     implementation 'com.github.glomadrian:Grav:1.1'
+
     //PICASSO
+
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.yqritc:recyclerview-flexibledivider:1.4.0'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
@@ -57,6 +66,9 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:4.3.1'
     implementation 'com.google.firebase:firebase-core:16.0.5'
     implementation 'com.google.firebase:firebase-database:16.0.5'
+
+    //Volley
+    implementation 'com.android.volley:volley:1.1.1'
 
     implementation 'com.google.firebase:firebase-storage:16.0.4'
     testImplementation 'junit:junit:4.12'

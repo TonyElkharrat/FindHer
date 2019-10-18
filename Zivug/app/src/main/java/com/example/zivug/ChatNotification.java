@@ -1,6 +1,5 @@
 package com.example.zivug;
 
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,16 +10,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
-import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.bumptech.glide.Glide;
-import com.example.zivug.Activities.FindHerActivity;
-import com.example.zivug.Activities.MainActivity;
-import com.example.zivug.fragments.ChatFragment;
+import com.example.zivug.Activities.ZivugActivity;
 import com.example.zivug.models.Message;
 import com.example.zivug.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.concurrent.ExecutionException;
 
 public class ChatNotification extends Service
 {
@@ -115,7 +108,7 @@ public class ChatNotification extends Service
 
         NotificationManager    mNotificationManager =      (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder =  new NotificationCompat.Builder(getApplicationContext(), "notify_001");
-        Intent notificationIntent = new Intent(getApplicationContext(), FindHerActivity.class);
+        Intent notificationIntent = new Intent(getApplicationContext(), ZivugActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();

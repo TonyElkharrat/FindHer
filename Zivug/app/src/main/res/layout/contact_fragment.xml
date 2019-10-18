@@ -5,13 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view_contacts"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler_view_contacts"
 
-        />
-
+            />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="this is a text"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/city_user_esai"/>
     <com.varunest.sparkbutton.SparkButton
         android:id="@+id/spark_button"
         android:layout_width="60dp"

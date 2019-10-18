@@ -19,7 +19,6 @@
 
 
 
-
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,8 +34,5 @@
         app:menu="@menu/bottom_navigation"
         android:layout_alignParentBottom="true"
         android:elevation="60dp"/>
-
-
-
 
 </RelativeLayout>

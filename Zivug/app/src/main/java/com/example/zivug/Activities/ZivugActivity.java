@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.zivug.Api.TimeHelper;
 import com.example.zivug.ChatNotification;
 import com.example.zivug.R;
+import com.example.zivug.RequestPermission.LocationRequest;
 import com.example.zivug.fragments.AccountProfileFragment;
 import com.example.zivug.fragments.DiscussionsFragment;
 import com.example.zivug.fragments.HomeFragment;
@@ -19,10 +20,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.iammert.library.readablebottombar.ReadableBottomBar;
 
 import java.util.HashMap;
 
-public class FindHerActivity extends AppCompatActivity
+public class ZivugActivity extends AppCompatActivity
 {
     BottomNavigationView bottomNavigationView ;
 
@@ -32,6 +34,9 @@ public class FindHerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,new HomeFragment()).addToBackStack(null).commit();
+        LocationRequest locationRequest = new LocationRequest(this);
+        locationRequest.makeLocationRequest();
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
 
@@ -75,6 +80,7 @@ public class FindHerActivity extends AppCompatActivity
         else
         {
             getSupportFragmentManager().popBackStack();
+            moveTaskToBack(true);
             super.onBackPressed();
             return;
         }
@@ -83,9 +89,9 @@ public class FindHerActivity extends AppCompatActivity
 
     }
 
-
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         setStatus("online");
     }

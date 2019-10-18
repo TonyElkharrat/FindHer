@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        Intent intent = new Intent(MainActivity.this,ActivitySplash.class);
+        Intent intent = new Intent(MainActivity.this,AuthentificationActivity.class);
         startActivity(intent);
 
     }

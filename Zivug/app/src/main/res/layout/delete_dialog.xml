@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="300dp"
+    android:layout_gravity="center"
+    android:layout_height="500dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/roolsGame"
+    android:layoutDirection="ltr"
+    android:gravity="start"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LayoutOfInputName"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/gradiant_corners"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:textColor="#000"
+            android:fontFamily="@font/aaa"
+            android:id="@+id/text_dialog"
+            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check_green_24dp"
+                android:layout_margin="30dp"
+                android:id="@+id/YesButton"
+                android:background="@null"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cancel_black_24dp"
+                android:layout_margin="30dp"
+                android:layout_toRightOf="@id/YesButton"
+                android:id="@+id/CancelButton"
+                android:background="@null"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

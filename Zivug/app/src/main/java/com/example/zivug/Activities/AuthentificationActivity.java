@@ -11,13 +11,17 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.example.zivug.ChatNotification;
 import com.example.zivug.R;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -51,12 +55,7 @@ public class AuthentificationActivity extends AppCompatActivity
 
                 if (user != null)
                 {
-                    Intent intent = new Intent(AuthentificationActivity.this, FindHerActivity.class);
-
-                    storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
-                    final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
-                    startService(newIntent);
-                    startActivity(intent);
+                   createUser();
                 }
                 else
                 {
@@ -83,6 +82,29 @@ public class AuthentificationActivity extends AppCompatActivity
                 RC_SIGN_IN);
     }
 
+    private void createUser()
+    {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
+        HashMap<String,Object> hashMap = new HashMap<>();
+        hashMap.put("status","online");
+        hashMap.put("uId",FirebaseAuth.getInstance().getUid());
+        hashMap.put("urlPicture",FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
+        hashMap.put("userName",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        reference.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task)
+            {
+                if(task.isSuccessful())
+                {
+                    Intent intent = new Intent(AuthentificationActivity.this, ActivitySplash.class);
 
+                    storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
+                    final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
+                    startService(newIntent);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 
 }

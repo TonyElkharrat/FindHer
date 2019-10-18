@@ -1,11 +1,8 @@
 package com.example.zivug.fragments;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.zivug.Api.FileHelper;
 import com.example.zivug.Api.ImageHelper;
 import com.example.zivug.Api.TimeHelper;
-import com.example.zivug.ChatNotification;
-import com.example.zivug.MessageService;
 import com.example.zivug.notifier.TextChangedNotifier;
 import com.example.zivug.R;
 import com.example.zivug.Adapter.MessageAdapter;
@@ -38,14 +33,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.squareup.picasso.Picasso;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        drawable="@drawable/ic_home"
+        text="home" />
+
+
+
+    <tab
+        drawable="@drawable/ic_chat"
+        text="bag" />
+
+    <tab
+        drawable="@drawable/ic_heart_"
+        text="favorite" />
+
+    <tab
+        drawable="@drawable/profile_bottom_menu"
+        text="profile" />
+</tabs>

@@ -3,25 +3,26 @@
     <PreferenceCategory
         android:title="User Account">
 
-        <EditTextPreference
-            android:key="checkbox_preference"
-            android:title="Change Password "
+        <Preference
+            android:key="change_password_preference"
+            android:title="Reset Password "
             android:summary="We will send you a mail for reset your password"
             />
 
-        <EditTextPreference
-            android:key="edittext_preference"
+        <Preference
+            android:key="remove_user_account"
             android:title="Remove Account"
             android:summary="Delete Your Account definitively"
-             />
+
+            />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="User Settings">
 
-        <ListPreference
-            android:key="list_preference"
+        <Preference
+            android:key="remove_user_profil_picture"
             android:title="Remove user picture profil"
             android:summary="Click for remove your profil picture"
             />

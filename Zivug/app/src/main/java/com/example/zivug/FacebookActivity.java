@@ -114,7 +114,7 @@
 //                    TextView location = findViewById(R.id.location_facebook);
 //                    String image_url = "https://graph.facebook.com/"+id+ "/picture?type=normal";
 //
-//                    Intent findHerActivity = new Intent(FacebookActivity.this,FindHerActivity.class);
+//                    Intent findHerActivity = new Intent(FacebookActivity.this,ZivugActivity.class);
 //                    findHerActivity.putExtra("lastname",first_name);
 //                    findHerActivity.putExtra("firstname",last_name);
 //                    findHerActivity.putExtra("email",email);

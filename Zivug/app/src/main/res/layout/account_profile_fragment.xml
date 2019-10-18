@@ -11,7 +11,6 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/ic_filled_circle"
             android:layout_centerInParent="true"
             android:id="@+id/fontCircle"
             android:scaleType="fitXY"
@@ -59,14 +58,15 @@
         android:elevation="30dp"
         android:id="@+id/log_out_btn"/>
 
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/background_layout"
-    android:id="@+id/recycler_view_account_profil"
-    android:layout_margin="5dp"
-    android:layout_above="@id/log_out_btn"
-    />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/background_layout"
+        android:id="@+id/recycler_view_account_profil"
+        android:layout_margin="5dp"
+        android:layout_above="@id/log_out_btn"
+        android:overScrollMode="never"
+        />
 
 
 
