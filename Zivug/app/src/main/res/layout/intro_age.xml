@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFF"
+    tools:context=".Activities.ActivitySplash"
+    tools:ignore="MissingDefaultResource">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Month"
+        android:fontFamily="@font/aaa"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:id="@+id/Month"
+        android:layout_toLeftOf="@id/day"
+       android:layout_marginRight="40dp"
+        android:layout_centerInParent="true"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:maxLength="2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/Month"
+        android:inputType="numberPassword"
+        android:layout_alignLeft="@id/Month"
+        android:hint="MM"
+        android:background="@android:color/transparent"
+        android:id="@+id/month_input"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day"
+        android:textColor="#000"
+
+        android:fontFamily="@font/aaa"
+        android:textSize="20sp"
+        android:id="@+id/day"
+        android:layout_centerInParent="true"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:layout_marginTop="10dp"
+        android:maxLength="2"
+        android:layout_below="@id/day"
+        android:inputType="numberPassword"
+        android:layout_alignLeft="@id/day"
+        android:hint="DD"
+        android:background="@android:color/transparent"
+        android:id="@+id/day_input"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Year"
+        android:fontFamily="@font/aaa"
+        android:textColor="#000"
+
+        android:textSize="20sp"
+        android:id="@+id/Year"
+        android:layout_toRightOf="@id/day"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="50dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/Year"
+        android:hint="YYYY"
+        android:inputType="numberPassword"
+        android:layout_toRightOf="@id/day"
+        android:layout_marginLeft="40dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/Year_input"
+        android:maxLength="4"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="WHEN'S YOUR BIRTHDAY?"
+
+        android:layout_marginTop="130dp"
+        android:textColor="#000"
+        android:fontFamily="@font/aaa"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/next_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/myripple_circle"
+        android:src="@drawable/ic_next"
+        android:scaleType="center"
+        android:layout_margin="40dp"
+        />
+
+</RelativeLayout>

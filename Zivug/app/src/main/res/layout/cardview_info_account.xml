@@ -28,7 +28,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type Account  : "
+        android:text="Type Account : Free "
         android:textSize="25sp"
         android:fontFamily="@font/aaaa"
         android:layout_margin="10dp"

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context=".Activities.ActivitySplash">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="130dp"
+        android:layout_centerHorizontal="true"
+        android:text="Choose your gender"
+        android:textColor="#000"
+        android:fontFamily="@font/aaa"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/lay_gen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/man_Btn"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/ic_man"
+            android:layout_weight="1"
+         />
+
+        <Button
+            android:foreground="?attr/selectableItemBackground"
+            android:id="@+id/woman_Btn"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/ic_woman"
+            android:layout_weight="1"
+           />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/lay_gen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/aaa"
+            android:text="I'm a man"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aaa"
+        android:gravity="center"
+        android:layout_below="@id/lay_gen"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:text="I'm a woman"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
+
+    <ImageView
+        android:id="@+id/next_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_next"
+        android:scaleType="center"
+        android:layout_margin="40dp"
+        android:background="@drawable/myripple_circle"
+        />
+
+</RelativeLayout>

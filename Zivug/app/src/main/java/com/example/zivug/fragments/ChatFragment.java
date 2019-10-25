@@ -41,6 +41,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -60,6 +61,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener
     TextView inputUser;
     TextView statusUser;
     ImageView addFileButton;
+    Set<String> allUsersDiscussion;
     int GALLERY_REQUEST=1;
 
     @Nullable
@@ -100,7 +102,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener
         addFileButton = view.findViewById(R.id.chat_add_file_button);
         addFileButton.setOnClickListener(this);
 
-        ImageView backButton = view.findViewById(R.id.back_button_to_all_discussion);
+        ImageView backButton = view.findViewById(R.id.back_button);
         backButton.setOnClickListener(this);
         inputUser = view.findViewById(R.id.chat_message_edit_text);
         statusUser = view.findViewById(R.id.status_Of_user);
@@ -149,7 +151,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener
 
     private void readMessages()
     {
-
                MessageAdapter adapter = new MessageAdapter(getContext(), allMessage);
                 recyclerView.smoothScrollToPosition(adapter.getItemCount());
                 recyclerView.scrollToPosition(adapter.getItemCount() - 1);
@@ -169,22 +170,25 @@ public class ChatFragment extends Fragment implements View.OnClickListener
 
 
                         allMessage.clear();
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                        {
                             Message message = snapshot.getValue(Message.class);
 
-                            if (message != null) {
+                            if (message != null)
+                            {
 
-                                if (message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getUserSender().equals(userId)) {
+                                if (message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getUserSender().equals(userId)||message.getUserReceiver().equals(userId) && message.getUserSender().equals(FirebaseAuth.getInstance().getUid()))
+                                {
                                     HashMap<String, Object> hashMap = new HashMap<>();
-                                    if(message.getIsRead()==false&& !message.getUserSender().equals(FirebaseAuth.getInstance().getUid()))
+                                    if(message.getIsRead()== false&& !message.getUserSender().equals(FirebaseAuth.getInstance().getUid()))
                                     {
                                         hashMap.put("isRead", true);
                                         snapshot.getRef().updateChildren(hashMap);
                                     }
 
-
+                                    allMessage.add(message);
                                 }
-                                allMessage.add(message);
+
                                 readMessages();
                             }
                         }
@@ -252,7 +256,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener
             inputUser.setText("");
         }
 
-        else if(view.getId() == R.id.back_button_to_all_discussion )
+        else if(view.getId() == R.id.back_button )
         {
             ((AppCompatActivity) getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.central_layout, new DiscussionsFragment()).commit();
         }

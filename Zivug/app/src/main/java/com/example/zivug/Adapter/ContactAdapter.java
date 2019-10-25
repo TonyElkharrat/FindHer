@@ -1,6 +1,7 @@
 package com.example.zivug.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zivug.R;
+import com.example.zivug.fragments.ChatFragment;
 import com.example.zivug.models.User;
 import com.squareup.picasso.Picasso;
 
@@ -50,7 +54,10 @@ public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.ViewHol
     public class ViewHolderContact extends RecyclerView.ViewHolder
     {
         ImageView imageOfContact;
+        ImageView message;
         TextView nameOfContact;
+        TextView ageOfContact;
+        TextView cityOfContact;
         RecyclerView recyclerView;
         CardView userCardView;
 
@@ -59,14 +66,23 @@ public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.ViewHol
             super(itemView);
             imageOfContact = itemView.findViewById(R.id.profilePic);
             nameOfContact = itemView.findViewById(R.id.nameOfContact);
+            ageOfContact = itemView.findViewById(R.id.age_contact_fragment);
             userCardView = itemView.findViewById(R.id.contact_cardview);
+            cityOfContact = itemView.findViewById(R.id.city_user_contact_fragment);
+            message = itemView.findViewById(R.id.message_contact);
 
-            userCardView.setOnClickListener(new View.OnClickListener()
+            message.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
                 {
-                    listener.OnUserClick(allUsers.get(getAdapterPosition()).getuId());
+                    Bundle bundle = new Bundle();
+                    bundle.putString("userId",allUsers.get(getAdapterPosition()).getuId());
+                    FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+                    ChatFragment chatFragment = new ChatFragment();
+                    chatFragment.setArguments(bundle);
+                    fragmentManager.beginTransaction().replace(R.id.central_layout,chatFragment).addToBackStack(null).commit();
+
                 }
             });
         }
@@ -77,6 +93,8 @@ public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.ViewHol
     {
         Picasso.get().load(allUsers.get(position).getUrlPicture()).into(holder.imageOfContact);
         holder.nameOfContact.setText(allUsers.get(position).getUserName());
+        holder.ageOfContact.setText(allUsers.get(position).getAgeUser());
+        holder.cityOfContact.setText(allUsers.get(position).getLocation().getCityUser());
     }
 
     @Override

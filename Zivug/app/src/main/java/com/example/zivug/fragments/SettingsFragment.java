@@ -6,28 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-
 import com.example.zivug.Api.SnackBarMessage;
 import com.example.zivug.R;
 import com.example.zivug.UserManipulator.DeleteUserAccount;
 import com.example.zivug.UserManipulator.onDelete;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener
 {
@@ -51,7 +42,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     {
         super.onDetach();
         FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.central_layout,new AccountProfileFragment()).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(R.id.central_layout,new HomeFragment()).addToBackStack(null).commit();
     }
 
     @Override
@@ -74,9 +65,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
 
         return false;
     }
-
-
-
 
     private void resetPassword()
     {

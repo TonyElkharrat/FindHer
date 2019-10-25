@@ -2,5 +2,5 @@ package com.example.zivug.notifier;
 
 public interface cityListener
 {
-    void getCity(String city);
+    void getLocation(String city,String latitude,String longitude);
 }

@@ -19,12 +19,12 @@ public class JsonParser
 {
     private static cityListener listener;
 
-    public static   void ParseJsonFromLongitudeAndLatitudeToCity(String Url,final Context context,String longitudeLatitude)
+    public static   void ParseJsonFromLongitudeAndLatitudeToCity(String Url, final Context context, final String latitude, final String longitude)
     {
         RequestQueue queue = Volley.newRequestQueue(context);
         final StringBuilder country = new StringBuilder();
         country.append("");
-        StringRequest request = new StringRequest(Url+longitudeLatitude+"&key=2ce41e2e9c5e498dab1e3c0d8318b77e", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Url+latitude+"+"+longitude+"&key=2ce41e2e9c5e498dab1e3c0d8318b77e", new Response.Listener<String>() {
             @Override
             public void onResponse(String response)
             {
@@ -39,7 +39,7 @@ public class JsonParser
                     JSONObject cityObject = resultObject.getJSONObject("components");
 
                     String city = cityObject.getString("city");
-                    listener.getCity(city);
+                    listener.getLocation(city,latitude,longitude);
 
                 }
 

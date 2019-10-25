@@ -1,5 +1,6 @@
 package com.example.zivug.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.example.zivug.Api.LocationHelper;
 import com.example.zivug.ChatNotification;
 import com.example.zivug.R;
 import com.firebase.ui.auth.AuthUI;
@@ -39,32 +41,45 @@ public class AuthentificationActivity extends AppCompatActivity
     List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build() );
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState
+    ) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
 
-       mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-       mAuthListener = new FirebaseAuth.AuthStateListener()
-       {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
-            {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                if (user != null)
-                {
-                   createUser();
-                }
-                else
+                if (user == null)
                 {
                     startSignInActivity();
                 }
-            }
-        };
 
-        mAuth.addAuthStateListener(mAuthListener);
+                else
+                {
+                    Intent intent = new Intent(AuthentificationActivity.this, ZivugActivity.class);
+                    storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
+                    final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
+                    startService(newIntent);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+
+                }
+
+
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK)
+        {
+            createUser();
+        }
+
     }
 
     private void startSignInActivity()
@@ -90,14 +105,14 @@ public class AuthentificationActivity extends AppCompatActivity
         hashMap.put("uId",FirebaseAuth.getInstance().getUid());
         hashMap.put("urlPicture",FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
         hashMap.put("userName",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+
         reference.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task)
             {
                 if(task.isSuccessful())
                 {
-                    Intent intent = new Intent(AuthentificationActivity.this, ActivitySplash.class);
-
+                    Intent intent = new Intent(AuthentificationActivity.this, IntroActivity.class);
                     storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
                     final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
                     startService(newIntent);
@@ -107,4 +122,9 @@ public class AuthentificationActivity extends AppCompatActivity
         });
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
 }

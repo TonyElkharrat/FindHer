@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/back_button"
+        android:src="@drawable/ic_back_8"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Set the range age of your partner"
+    android:textColor="#000"
+    android:fontFamily="@font/aaaaaaaa"
+    android:textSize="20sp"
+    android:layout_alignLeft="@id/tvMin"
+    android:layout_marginTop="30dp"
+        android:layout_below="@id/back_button"
+    android:id="@+id/agee"/>
+
+    <com.crystal.crystalrangeseekbar.widgets.BubbleThumbRangeSeekbar
+        android:id="@+id/rangeSeekbar3"
+        android:layout_centerInParent="true"
+        android:layout_width="280dp"
+        android:layout_below="@id/agee"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        app:corner_radius="10"
+        app:min_value="18"
+        app:max_value="80"
+        app:steps="1"
+        app:bar_color="@color/salmon"
+        app:bar_highlight_color="@color/blueClear"
+        app:left_thumb_image="@drawable/icon2"
+        app:right_thumb_image="@drawable/icon2"
+        app:data_type="_integer"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMin"
+      android:layout_alignLeft="@id/rangeSeekbar3"
+        android:text="18"
+        android:layout_marginTop="5dp"
+        android:textColor="#000"
+        android:fontFamily="@font/aaaaaaaa"
+        android:layout_below="@id/rangeSeekbar3"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMaxin"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:text="80"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/rangeSeekbar3"
+        android:fontFamily="@font/aaaaaaaa"
+        android:layout_alignRight="@id/rangeSeekbar3"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:text="Set the radius of the research"
+        android:fontFamily="@font/aaaaaaaa"
+        android:layout_alignLeft="@id/tvMin"
+
+        android:layout_below="@id/tvMin"
+        android:layout_marginTop="80dp"
+        android:id="@+id/distance"
+        />
+
+    <com.crystal.crystalrangeseekbar.widgets.BubbleThumbSeekbar
+        android:id="@+id/rangeSeekbar4"
+        android:layout_centerInParent="true"
+        android:layout_width="260dp"
+        android:layout_below="@id/distance"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        app:corner_radius="10"
+        app:min_value="1"
+        app:max_value="400"
+        app:steps="1"
+        app:bar_color="@color/colorGreen"
+        app:bar_highlight_color="@color/blueClear"
+        app:left_thumb_image="@drawable/map"
+        app:left_thumb_image_pressed="@drawable/map"
+        app:data_type="_integer"
+        />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMaxdistance"
+        android:textSize="18sp"
+        android:text="400"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#000"
+        android:layout_below="@id/rangeSeekbar4"
+        android:fontFamily="@font/aaaaaaaa"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/km"
+        android:textSize="18sp"
+        android:text="Km"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#000"
+        android:layout_below="@id/rangeSeekbar4"
+        android:fontFamily="@font/aaaaaaaa"
+        android:layout_toRightOf="@id/tvMaxdistance"
+        android:layout_marginLeft="5dp"
+
+        />
+
+    <com.spark.submitbutton.SubmitButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Research"
+        android:id="@+id/research_button"
+        android:textColor="@color/gray"
+        app:sub_btn_background="@color/white"
+        app:sub_btn_duration="500"
+        android:layout_alignParentEnd="true"
+        app:sub_btn_line_color="@color/colorGreen"
+        app:sub_btn_ripple_color="@color/blueClear"
+        app:sub_btn_tick_color="@color/white"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

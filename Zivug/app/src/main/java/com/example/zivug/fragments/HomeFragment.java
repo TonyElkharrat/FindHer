@@ -1,34 +1,26 @@
 package com.example.zivug.fragments;
 
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.example.zivug.Adapter.ContactAdapter;
 import com.example.zivug.Animations.AnimationMaker;
-import com.example.zivug.Api.JsonParser;
 import com.example.zivug.Api.LocationHelper;
 import com.example.zivug.R;
+import com.example.zivug.models.Location;
 import com.example.zivug.models.User;
-import com.example.zivug.notifier.cityListener;
 import com.example.zivug.notifier.loadDataNotifier;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,46 +29,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkButtonBuilder;
+import com.varunest.sparkbutton.SparkEventListener;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 
 
 public class HomeFragment extends Fragment implements loadDataNotifier
 {
      TextView cityTV;
      RecyclerView recyclerView= null;
-     SparkButton finalButton;
+     SparkButton searchButton;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.contact_fragment, container, false);
 
         Initialize(view);
-        LocationHelper.getCityUser(getContext());
         loadData();
         AnimationMaker.makeLoadingAnimation(getActivity(),view,R.id.swipeContainer);
         AnimationMaker.SetListener(this);
-
-        boolean isWithin = LocationHelper.isCityInRadius(50*1000,34.781769,32.085300);
-
-        JsonParser.SetListener(new cityListener() {
-            @Override
-            public void getCity(String city) {
-                cityTV.setText(city);
-            }
-        });
-
-
-        finalButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view)
-           {
-               finalButton.setInactiveImage(R.drawable.ic_loupe);
-               finalButton.playAnimation();
-           }
-       });
-
         return view;
     }
 
@@ -86,18 +60,28 @@ public class HomeFragment extends Fragment implements loadDataNotifier
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        cityTV = view.findViewById(R.id.city_user_esai);
-        finalButton = view.findViewById(R.id.spark_button);
-        finalButton = new SparkButtonBuilder(getContext())
-                .setActiveImage(R.drawable.ic_loupe)
-                .setPrimaryColor(ContextCompat.getColor(getContext(), R.color.salmon))
-                .setSecondaryColor(ContextCompat.getColor(getContext(), R.color.blueClear))
-                .build();
+
+        searchButton = (SparkButton) view.findViewById(R.id.spark_button);
+
+        searchButton.setEventListener(new SparkEventListener() {
+            @Override
+            public void onEvent(ImageView button, boolean buttonState)
+            {
+
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState)
+            {
+                ((AppCompatActivity) getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.central_layout, new SearchFragment()).commit();
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
+            }
+        });
     }
-
-
-
-
 
     @Override
     public void loadData()
@@ -105,7 +89,8 @@ public class HomeFragment extends Fragment implements loadDataNotifier
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         final ArrayList<User>  allUsers = new ArrayList<>();
 
-        databaseReference.child("Users").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Users").addValueEventListener(new ValueEventListener()
+        {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -115,9 +100,26 @@ public class HomeFragment extends Fragment implements loadDataNotifier
                 for (DataSnapshot snapshot: dataSnapshot.getChildren() )
                 {
                     User user = snapshot.getValue(User.class);
+
                     if(!user.getuId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                     {
-                        allUsers.add(user);
+                        if (getArguments() != null)
+                        {
+                            int minimumAge = getArguments().getInt("minimumAge");
+                            int maximumAge = getArguments().getInt("maximumAge");
+                            int radiusResearch = getArguments().getInt("radiusResearch");
+                            Location location = user.getLocation();
+
+                            if( Integer.valueOf(user.getAgeUser())>= minimumAge && Integer.valueOf(user.getAgeUser())<=maximumAge&& LocationHelper.isCityInRadius(radiusResearch*1000,Double.valueOf(location.getLongitude()),Double.valueOf(location.getLatitude())))
+                            {
+                                allUsers.add(user);
+                            }
+                        }
+
+                        else
+                            {
+                            allUsers.add(user);
+                        }
                     }
                 }
 
@@ -127,11 +129,14 @@ public class HomeFragment extends Fragment implements loadDataNotifier
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
 
             }
         });
     }
 
-    }
+
+
+}
 

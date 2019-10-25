@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context=".Activities.ActivitySplash">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:text="Welcome to Zivug"
+        android:textColor="#000"
+        android:fontFamily="@font/aaa"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+   <ImageView
+       android:layout_width="230dp"
+       android:layout_height="230dp"
+       android:src="@drawable/hello"
+       android:layout_centerInParent="true"
+       android:id="@+id/icon_intro_home"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Find your love near you"
+        android:textColor="#000"
+        android:fontFamily="@font/aaa"
+        android:textSize="30sp"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:layout_below="@id/icon_intro_home"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/myripple"
+        android:textColor="#000"
+        android:fontFamily="@font/aaaaaaa"
+        android:layout_marginBottom="20dp"
+        android:elevation="30dp"
+        android:id="@+id/start_btn"/>
+
+
+
+
+</RelativeLayout>

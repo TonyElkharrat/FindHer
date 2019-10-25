@@ -16,6 +16,7 @@ import com.example.zivug.RequestPermission.LocationRequest;
 import com.example.zivug.fragments.AccountProfileFragment;
 import com.example.zivug.fragments.DiscussionsFragment;
 import com.example.zivug.fragments.HomeFragment;
+import com.example.zivug.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -27,17 +28,18 @@ import java.util.HashMap;
 public class ZivugActivity extends AppCompatActivity
 {
     BottomNavigationView bottomNavigationView ;
+    Thread thread = new Thread();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,new HomeFragment()).addToBackStack(null).commit();
-        LocationRequest locationRequest = new LocationRequest(this);
-        locationRequest.makeLocationRequest();
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,new HomeFragment()).addToBackStack(null).commit();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Thread thread = new Thread();
+        thread.start();
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
 
     }
@@ -52,6 +54,7 @@ public class ZivugActivity extends AppCompatActivity
             switch (menuItem.getItemId())
             {
                 case R.id.profile_nav :
+
                     selectedFragment = new AccountProfileFragment();
                     break;
                 case R.id.home_nav:
@@ -79,10 +82,12 @@ public class ZivugActivity extends AppCompatActivity
 
         else
         {
+
             getSupportFragmentManager().popBackStack();
             moveTaskToBack(true);
             super.onBackPressed();
             return;
+
         }
 
         bottomNavigationView.setSelectedItemId(R.id.home_nav);
@@ -97,10 +102,12 @@ public class ZivugActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPause() {
+    public void onPause()
+    {
         super.onPause();
         setStatus("last seen at : "+TimeHelper.getTime());
     }
+
 
     private void setStatus(String status)
     {

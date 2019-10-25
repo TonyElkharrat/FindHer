@@ -181,7 +181,8 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
     private void setPhotoProfile(Object photoSelected)
     {
         Glide.with(AccountProfileFragment.this).load(photoSelected)
-                .apply(RequestOptions.circleCropTransform().format(DecodeFormat.PREFER_ARGB_8888).override(Target.SIZE_ORIGINAL)).into(photoOfUser);
+               .apply(RequestOptions.circleCropTransform().format(DecodeFormat.PREFER_ARGB_8888).override(Target.SIZE_ORIGINAL))
+                .into(photoOfUser);
     }
 
     @Override

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context=".Activities.ActivitySplash">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"
+        />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:SpinKit_Color="#000"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_centerHorizontal="true"
+        android:text="So where are you ?"
+        android:id="@+id/where_are_you_tv"
+        android:textColor="#000"
+        android:fontFamily="@font/aaa"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:text="City"
+        android:id="@+id/city_user"
+        android:visibility="invisible"
+        android:layout_below="@id/where_are_you_tv"
+        android:textColor="#000"
+        android:fontFamily="@font/aaa"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Locate me "
+        android:layout_centerInParent="true"
+        android:background="@drawable/myripple"
+        android:textColor="#000"
+        android:fontFamily="@font/aaaaaaa"
+        android:layout_marginBottom="20dp"
+        android:elevation="30dp"
+        android:id="@+id/loacte_btn"/>
+
+    <ImageView
+        android:id="@+id/next_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_next"
+        android:scaleType="center"
+        android:layout_margin="40dp"
+        android:background="@drawable/myripple_circle"
+
+        />
+
+</RelativeLayout>

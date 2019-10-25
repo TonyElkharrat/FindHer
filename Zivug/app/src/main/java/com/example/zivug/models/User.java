@@ -6,7 +6,8 @@ public class User
     private String uId;
     private String urlPicture;
     private String status;
-
+    private String ageUser;
+    private Location Location;
 
     public User()
     {
@@ -37,11 +38,12 @@ public class User
         this.urlPicture = urlPicture;
     }
 
-    public User(String userName, String uId, String urlPicture, String lastSeen)
+    public User(String userName, String uId, String urlPicture, String lastSeen, Location location)
     {
         this.userName = userName;
         this.uId = uId;
         this.urlPicture = urlPicture;
+        this.Location = location;
     }
 
     public String getStatus() {
@@ -53,4 +55,19 @@ public class User
     }
 
 
+    public String getAgeUser() {
+        return ageUser;
+    }
+
+    public void setAgeUser(String age) {
+        this.ageUser = age;
+    }
+
+    public Location getLocation() {
+        return Location;
+    }
+
+    public void setLocation(Location location) {
+        this.Location = location;
+    }
 }
