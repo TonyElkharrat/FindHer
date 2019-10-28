@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.zivug.Api.FileHelper;
-import com.example.zivug.Api.ImageHelper;
+import com.example.zivug.Api.BitmapCompresser;
 import com.example.zivug.Api.TimeHelper;
 import com.example.zivug.notifier.TextChangedNotifier;
 import com.example.zivug.R;
@@ -55,6 +55,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
     ArrayList<Message> allMessage;
+    boolean isRunnig;
     RecyclerView recyclerView;
     String userId;
     ValueEventListener listener;
@@ -63,6 +64,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener
     ImageView addFileButton;
     Set<String> allUsersDiscussion;
     int GALLERY_REQUEST=1;
+    DatabaseReference chatReference;
 
     @Nullable
     @Override
@@ -134,7 +136,10 @@ public class ChatFragment extends Fragment implements View.OnClickListener
             {
                 User user = dataSnapshot.getValue(User.class);
                 partnerName.setText(user.getUserName());
-                Picasso.get().load(user.getUrlPicture()).into(partnerPicture);
+                if(!user.getUrlPicture().isEmpty())
+                {
+                    Picasso.get().load(user.getUrlPicture()).into(partnerPicture);
+                }
 
                     statusUser.setText(user.getStatus());
 
@@ -160,46 +165,50 @@ public class ChatFragment extends Fragment implements View.OnClickListener
 
     private void makeMessageSeen()
     {
-        databaseReference = FirebaseDatabase.getInstance().getReference("Chats");
+        chatReference = FirebaseDatabase.getInstance().getReference("Chats");
         allMessage = new ArrayList<>();
-        listener = databaseReference.addValueEventListener(new ValueEventListener()
-        {
-
+        attach( new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                allMessage.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Message message = snapshot.getValue(Message.class);
 
+                    if (message != null)
+                    {
 
-                        allMessage.clear();
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                        if (message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getUserSender().equals(userId)&& isRunnig)
                         {
-                            Message message = snapshot.getValue(Message.class);
 
-                            if (message != null)
+                            String userId =FirebaseAuth.getInstance().getUid();
+                            String userSender =message.getUserSender();
+                            if(message.getIsRead()== false && !userSender.equals(userId))
                             {
-
-                                if (message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getUserSender().equals(userId)||message.getUserReceiver().equals(userId) && message.getUserSender().equals(FirebaseAuth.getInstance().getUid()))
-                                {
-                                    HashMap<String, Object> hashMap = new HashMap<>();
-                                    if(message.getIsRead()== false&& !message.getUserSender().equals(FirebaseAuth.getInstance().getUid()))
-                                    {
-                                        hashMap.put("isRead", true);
-                                        snapshot.getRef().updateChildren(hashMap);
-                                    }
-
-                                    allMessage.add(message);
-                                }
-
-                                readMessages();
+                                HashMap<String, Object> hashMap = new HashMap<>();
+                                hashMap.put("isRead", true);
+                                snapshot.getRef().updateChildren(hashMap);
                             }
+
+                        }
+
+                        if(message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getUserSender().equals(userId)||(message.getUserReceiver().equals(userId) && message.getUserSender().equals(FirebaseAuth.getInstance().getUid()))) {
+
+                            allMessage.add(message);
+
                         }
                     }
+                }
+                readMessages();
+            }
+
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
 
     }
 
@@ -212,7 +221,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener
 
         if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK&& data!=null && data.getData()!=null)
         {
-           byte[] fileInBytes = ImageHelper.getCompressImage(getContext(),data.getData());
+           byte[] fileInBytes = BitmapCompresser.getCompressImage(getContext(),data.getData());
            uploadImage(fileInBytes);
 
         }
@@ -272,14 +281,32 @@ public class ChatFragment extends Fragment implements View.OnClickListener
     public void onResume()
     {
         super.onResume();
+        isRunnig = true;
         makeMessageSeen();
     }
+
+    private void attach(ValueEventListener valueEventListener)
+    {
+        listener = valueEventListener;
+        chatReference.addValueEventListener(listener);
+
+    }
+
+    private void dettach()
+    {
+        chatReference.removeEventListener(listener);
+
+    }
+
 
     @Override
     public void onPause()
     {
+
+        dettach();
+        isRunnig = false;
         super.onPause();
-        databaseReference.removeEventListener(listener);
+
     }
 
 }

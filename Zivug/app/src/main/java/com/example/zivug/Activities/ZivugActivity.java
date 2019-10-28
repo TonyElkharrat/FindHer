@@ -1,6 +1,5 @@
 package com.example.zivug.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -9,25 +8,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.zivug.Animations.AnimationMaker;
 import com.example.zivug.Api.TimeHelper;
-import com.example.zivug.ChatNotification;
 import com.example.zivug.R;
-import com.example.zivug.RequestPermission.LocationRequest;
 import com.example.zivug.fragments.AccountProfileFragment;
 import com.example.zivug.fragments.DiscussionsFragment;
 import com.example.zivug.fragments.HomeFragment;
-import com.example.zivug.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.iammert.library.readablebottombar.ReadableBottomBar;
 
 import java.util.HashMap;
 
 public class ZivugActivity extends AppCompatActivity
 {
-    BottomNavigationView bottomNavigationView ;
+    public  static BottomNavigationView bottomNavigationView ;
     Thread thread = new Thread();
 
     @Override
@@ -38,6 +34,7 @@ public class ZivugActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,new HomeFragment()).addToBackStack(null).commit();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         Thread thread = new Thread();
         thread.start();
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistener);
@@ -65,6 +62,7 @@ public class ZivugActivity extends AppCompatActivity
                     break;
 
             }
+
             getSupportFragmentManager().beginTransaction().replace(R.id.central_layout,selectedFragment).addToBackStack(null).commit();
 
             return  true;
@@ -118,4 +116,8 @@ public class ZivugActivity extends AppCompatActivity
         databaseReference.updateChildren(hashMap);
     }
 
+    public  void setImageBottomMenuSelected(int itemSelected)
+    {
+        bottomNavigationView.setSelectedItemId(itemSelected);
+    }
 }

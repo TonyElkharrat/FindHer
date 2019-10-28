@@ -5,12 +5,6 @@
     android:orientation="vertical"
     android:id="@+id/central_layout_intro"
     android:layout_above="@id/bottom_navigation">
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:gravity="center"
-        android:text="JJJJJJJ"
-        android:textSize="100sp"
-        />
+
 
 </RelativeLayout>

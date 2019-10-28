@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -16,9 +17,14 @@ import com.example.zivug.Api.SnackBarMessage;
 import com.example.zivug.R;
 import com.example.zivug.UserManipulator.DeleteUserAccount;
 import com.example.zivug.UserManipulator.onDelete;
+import com.example.zivug.notifier.NotificationMaker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener
 {
@@ -34,7 +40,19 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         changePasswordPreferenceButton.setOnPreferenceClickListener(this);
         Preference removeAccountPreferenceButton = findPreference("remove_user_account");
         removeAccountPreferenceButton.setOnPreferenceClickListener(this);
+        Preference notificationReminder = findPreference("remind_notification");
+        notificationReminder.setOnPreferenceClickListener(this);
+        Preference photoRemover = findPreference("remove_user_profil_picture");
+        photoRemover.setOnPreferenceClickListener(this);
 
+    }
+
+    private void removeUserProfilPicture()
+    {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        HashMap hashMap = new HashMap();
+        hashMap.put("urlPicture"," ");
+        databaseReference.child("Users").child(FirebaseAuth.getInstance().getUid()).updateChildren(hashMap);
     }
 
     @Override
@@ -61,6 +79,27 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         else  if(preference.getKey().equals("remove_user_account"))
         {
           showDialog(new DeleteUserAccount(),"Are you Sure you want to delete your account? This action is irreversible");
+        }
+
+        else  if(preference.getKey().equals("remove_user_profil_picture"))
+        {
+          removeUserProfilPicture();
+        }
+
+        else if(preference.getKey().equals("remind_notification"))
+        {
+            CheckBoxPreference checkBoxPreference = (CheckBoxPreference)preference;
+            NotificationMaker notificationMaker = new NotificationMaker();
+
+            if(checkBoxPreference.isChecked())
+            {
+                notificationMaker.programNotification(24000, getContext(), "Check new partners connections", "Notification from Zivug", R.drawable.icon2);
+            }
+
+            else
+            {
+                notificationMaker.removeProgram();
+            }
         }
 
         return false;

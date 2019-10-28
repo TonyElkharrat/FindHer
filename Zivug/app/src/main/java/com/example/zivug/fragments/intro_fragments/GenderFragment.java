@@ -11,11 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.zivug.Animations.AnimationMaker;
 import com.example.zivug.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class GenderFragment extends Fragment implements View.OnClickListener
 {
     ImageView nextbutton;
-    Bundle bundle;
     String gender;
 
     @Override
@@ -23,7 +27,6 @@ public class GenderFragment extends Fragment implements View.OnClickListener
     {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.intro_gender, container, false);
         nextbutton = view.findViewById(R.id.next_button);
-        bundle = getArguments();
         nextbutton.setOnClickListener(this);
         Button manButton = view.findViewById(R.id.man_Btn);
         Button womanButton = view.findViewById(R.id.woman_Btn);
@@ -40,10 +43,9 @@ public class GenderFragment extends Fragment implements View.OnClickListener
         if(view.getId() == R.id.next_button)
         {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            updateDatabase();
             transaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_left);
-            bundle.putString("gender",gender);
             LevelReligionFragment levelReligionFragment = new LevelReligionFragment();
-            levelReligionFragment.setArguments(bundle);
             transaction.replace(R.id.central_layout_intro,levelReligionFragment);
             transaction.commit();
         }
@@ -61,5 +63,13 @@ public class GenderFragment extends Fragment implements View.OnClickListener
             nextbutton.setVisibility(View.VISIBLE);
             gender = "woman";
         }
+    }
+
+    private  void updateDatabase()
+    {
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
+        HashMap genderOfUser = new HashMap();
+        genderOfUser.put("gender",gender);
+        reference.updateChildren(genderOfUser);
     }
 }

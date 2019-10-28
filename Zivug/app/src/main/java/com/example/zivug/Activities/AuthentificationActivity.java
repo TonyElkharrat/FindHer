@@ -1,6 +1,5 @@
 package com.example.zivug.Activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,8 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.example.zivug.Api.LocationHelper;
-import com.example.zivug.ChatNotification;
+import com.example.zivug.notifier.ChatNotification;
 import com.example.zivug.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -114,8 +112,6 @@ public class AuthentificationActivity extends AppCompatActivity
                 {
                     Intent intent = new Intent(AuthentificationActivity.this, IntroActivity.class);
                     storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
-                    final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
-                    startService(newIntent);
                     startActivity(intent);
                 }
             }

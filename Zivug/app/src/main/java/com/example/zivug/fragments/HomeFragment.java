@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.example.zivug.R;
 import com.example.zivug.models.Location;
 import com.example.zivug.models.User;
 import com.example.zivug.notifier.loadDataNotifier;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment implements loadDataNotifier
      RecyclerView recyclerView= null;
      SparkButton searchButton;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -57,6 +60,7 @@ public class HomeFragment extends Fragment implements loadDataNotifier
     private  void Initialize(View view)
     {
         recyclerView = view.findViewById(R.id.recycler_view_contacts);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
@@ -88,7 +92,20 @@ public class HomeFragment extends Fragment implements loadDataNotifier
     {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         final ArrayList<User>  allUsers = new ArrayList<>();
+        final User[] Firebaseuser = new User[1];
+        databaseReference.child("Users").child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                Firebaseuser[0] = dataSnapshot.getValue(User.class);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         databaseReference.child("Users").addValueEventListener(new ValueEventListener()
         {
 
@@ -97,12 +114,15 @@ public class HomeFragment extends Fragment implements loadDataNotifier
             {
                 allUsers.clear();
 
+
                 for (DataSnapshot snapshot: dataSnapshot.getChildren() )
                 {
                     User user = snapshot.getValue(User.class);
 
-                    if(!user.getuId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                    if(!user.getuId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())&&!Firebaseuser[0].getGender().equals(user.getGender()))
                     {
+
+
                         if (getArguments() != null)
                         {
                             int minimumAge = getArguments().getInt("minimumAge");

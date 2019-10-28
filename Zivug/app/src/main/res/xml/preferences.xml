@@ -15,18 +15,22 @@
             android:summary="Delete Your Account definitively"
 
             />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="User Settings">
-
         <Preference
             android:key="remove_user_profil_picture"
             android:title="Remove user picture profil"
             android:summary="Click for remove your profil picture"
             />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="User Settings">
+
+        <CheckBoxPreference
+            android:key="remind_notification"
+            android:title="Remind me about new partner"
+            android:summary="Click for remind you all 24 H about new partner connections"
+            />
         <Preference
             android:title="Visit our website www.Zivug.com ">
             <intent android:action="android.intent.action.VIEW"

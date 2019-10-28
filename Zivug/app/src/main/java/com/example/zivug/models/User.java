@@ -8,6 +8,8 @@ public class User
     private String status;
     private String ageUser;
     private Location Location;
+    private String levelOfReligion;
+    private String gender;
 
     public User()
     {
@@ -69,5 +71,21 @@ public class User
 
     public void setLocation(Location location) {
         this.Location = location;
+    }
+
+    public String getLevelOfReligion() {
+        return levelOfReligion;
+    }
+
+    public void setLevelOfReligion(String levelOfReligion) {
+        this.levelOfReligion = levelOfReligion;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

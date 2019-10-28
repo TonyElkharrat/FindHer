@@ -90,6 +90,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViwHolderUser>
     {
         holder.partnerName.setText(allPartnerDiscussion.get(position).getUserName());
         setLastMessageInfo(allPartnerDiscussion.get(position).getuId(),holder.lastMessage,holder.timeLastMessage,holder.checkLastMessage,holder.photoContent);
+        if(!allPartnerDiscussion.get(position).getUrlPicture().isEmpty())
         Picasso.get().load(allPartnerDiscussion.get(position).getUrlPicture()).into(holder.partnerPictureUrl);
     }
 

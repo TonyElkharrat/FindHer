@@ -10,11 +10,16 @@ import android.view.animation.AnimationUtils;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.zivug.Api.SnackBarMessage;
 import com.example.zivug.R;
 import com.example.zivug.notifier.loadDataNotifier;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class AnimationMaker {
+public class AnimationMaker
+{
     private static loadDataNotifier notifier;
+
 
     public static void SetListener(loadDataNotifier i_notifier) {
         notifier = i_notifier;
@@ -52,4 +57,19 @@ public class AnimationMaker {
         Animation scaleUp = AnimationUtils.loadAnimation(context, R.anim.animation_inflate);
         view.setAnimation(scaleUp);
     }
+
+    public static void updateUI(Activity activity,Task task)
+    {
+
+        if(task.isSuccessful())
+        {
+            SnackBarMessage.showSnackBar(activity,"The Picture was uploaded successfully");
+        }
+
+        else
+        {
+            SnackBarMessage.showSnackBar(activity,"The Picture was not uploaded ");
+        }
+    }
+
 }

@@ -16,13 +16,17 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.zivug.Animations.AnimationMaker;
 import com.example.zivug.Api.SnackBarMessage;
 import com.example.zivug.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class BirthdayFragment extends Fragment
 {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        final Bundle bundle = new Bundle();
         String dateOfBirthday;
         View view = LayoutInflater.from(getContext()).inflate(R.layout.intro_age, container, false);
         ImageView nextbutton = view.findViewById(R.id.next_button);
@@ -48,9 +52,8 @@ public class BirthdayFragment extends Fragment
                 {
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     LocationFragment locationFragment =  new LocationFragment();
-                    int age = 2019-Integer.valueOf(yearInput.getText().toString());
-                    bundle.putString("age",age+"");
-                    locationFragment.setArguments(bundle);
+                    int ageOfUser = 2019-Integer.valueOf(yearInput.getText().toString());
+                    updateDatabase(ageOfUser);
                     transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
                     transaction.replace(R.id.central_layout_intro,locationFragment);
                     transaction.commit();
@@ -87,6 +90,14 @@ public class BirthdayFragment extends Fragment
         }
 
         return true;
+    }
+
+    private  void updateDatabase(int ageOfUser)
+    {
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
+        HashMap genderOfUser = new HashMap();
+        genderOfUser.put("ageUser",ageOfUser+"");
+        reference.updateChildren(genderOfUser);
     }
 
 }

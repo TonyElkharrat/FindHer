@@ -52,6 +52,7 @@ public class AccountProfilAdapter extends RecyclerView.Adapter<RecyclerView.View
             case 0:
                 AccountViewHolder acccountholder1 = (AccountViewHolder) holder;
                 acccountholder1.email.setText(acccountholder1.email.getText()+FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
                 break;
                 case 1:
                 AccountViewHolder2 acccountholder2 = (AccountViewHolder2) holder;
@@ -81,7 +82,6 @@ public class AccountProfilAdapter extends RecyclerView.Adapter<RecyclerView.View
         public AccountViewHolder(@NonNull View itemView)
         {
             super(itemView);
-
             email = itemView.findViewById(R.id.email_cardView);
             levelReligion = itemView.findViewById(R.id.level_Of_Religion_cardview);
         }

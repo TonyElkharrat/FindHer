@@ -94,6 +94,39 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paris"
+            android:id="@+id/levelOfReligion"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/aaa"
+            android:layout_below="@id/layout_name_age"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:visibility="invisible"
+            />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="#000"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"/>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

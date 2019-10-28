@@ -33,4 +33,5 @@
         android:background="@drawable/shape_search_partner"
         app:sparkbutton_secondaryColor="@color/salmon"
         android:layout_margin="50dp"/>
+
 </RelativeLayout>

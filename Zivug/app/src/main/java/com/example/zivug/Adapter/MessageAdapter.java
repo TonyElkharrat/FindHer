@@ -1,11 +1,13 @@
 package com.example.zivug.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.zivug.R;
 import com.example.zivug.models.Message;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,6 +48,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         private CircleImageView profilPicture;
         private ImageView isSeen;
         private ImageView imageSent;
+        ProgressBar progressBar;
+        SpinKitView animationLoading;
         LinearLayout messageLayout;
 
 
@@ -55,7 +61,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             timeMessage = itemView.findViewById(R.id.time_message_chat_item);
             isSeen = itemView.findViewById(R.id.view_message);
             messageLayout = itemView.findViewById(R.id.messageLayout);
+            animationLoading = itemView.findViewById(R.id.spin_kit);
             imageSent = itemView.findViewById(R.id.image_sent);
+
         }
 
     }
@@ -80,7 +88,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderMessage holder, int position)
+    public void onBindViewHolder(@NonNull final ViewHolderMessage holder, int position)
     {
         Message message = allMessages.get(position);
         holder.message.setText(message.getMessage());
@@ -106,8 +114,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         if(message.getType().equals("image"))
         {
+            holder.animationLoading.setVisibility(View.VISIBLE);
             holder.message.setVisibility(View.INVISIBLE);
-            Glide.with(context).load(message.getMessage()).into(holder.imageSent);
+            Picasso.get().load(Uri.parse(message.getMessage())).into(holder.imageSent, new Callback() {
+                @Override
+                public void onSuccess() {
+                    holder.animationLoading.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
 
 
 //            if(!message.getUserSender().equals(FirebaseAuth.getInstance().getCurrentUser()))

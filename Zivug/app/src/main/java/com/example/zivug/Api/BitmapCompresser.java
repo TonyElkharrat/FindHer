@@ -20,7 +20,7 @@ import com.google.firebase.storage.StorageTask;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class ImageHelper
+public class BitmapCompresser
 {
     public static byte[] getCompressImage (Context context ,Uri uri)
     {
