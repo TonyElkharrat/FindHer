@@ -28,6 +28,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.github.apl-devs:appintro:v4.2.3'
+
     //CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     //GLIDE

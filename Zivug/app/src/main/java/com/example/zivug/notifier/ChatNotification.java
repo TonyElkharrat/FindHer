@@ -42,6 +42,7 @@ public class ChatNotification extends IntentService
     public ChatNotification() {
         super("My Intent ");
     }
+    boolean isMessageRead;
 
 
     private void dataChangeListener()
@@ -55,17 +56,22 @@ public class ChatNotification extends IntentService
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     final Message message = snapshot.getValue(Message.class);
                     if (message != null) {
-                        if (message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getIsRead() == false) {
-
+                        if (message.getUserReceiver().equals(FirebaseAuth.getInstance().getUid()) && message.getIsRead() == false)
+                        {
+                            isMessageRead = message.getIsRead();
                             final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
                             databaseReference.child(message.getUserSender()).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                    User user = dataSnapshot.getValue(User.class);
-                                    NotificationMaker notificationMaker = new NotificationMaker();
+                                    if(isMessageRead==false)
+                                    {
+                                        User user = dataSnapshot.getValue(User.class);
+                                        NotificationMaker notificationMaker = new NotificationMaker();
 
-                                    notificationMaker.makeNotification(getApplicationContext(),"New notification from Zivug", user.getUserName(),R.drawable.ic_romantic_message);
+                                        notificationMaker.makeNotification(getApplicationContext(), "New notification from Zivug", user.getUserName(), R.drawable.ic_romantic_message);
+                                        isMessageRead = true;
+                                    }
 
                                 }
 
@@ -80,11 +86,11 @@ public class ChatNotification extends IntentService
                     }
                 }
             }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError)
-                    {
-                    }
-                });
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+            }
+        });
 
     }
 

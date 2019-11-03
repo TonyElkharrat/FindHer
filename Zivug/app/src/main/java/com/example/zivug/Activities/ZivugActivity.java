@@ -13,6 +13,8 @@ import com.example.zivug.Api.TimeHelper;
 import com.example.zivug.R;
 import com.example.zivug.fragments.AccountProfileFragment;
 import com.example.zivug.fragments.DiscussionsFragment;
+import com.example.zivug.fragments.FavoritesFragment;
+import com.example.zivug.fragments.FavoritesUserFragment;
 import com.example.zivug.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,6 +61,9 @@ public class ZivugActivity extends AppCompatActivity
                     break;
                 case R.id.messages_nav:
                     selectedFragment = new DiscussionsFragment();
+                    break;
+                    case R.id.favorites_nav:
+                    selectedFragment = new FavoritesUserFragment();
                     break;
 
             }

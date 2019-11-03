@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Tony\\Desktop\\New folder (12)\\ZivugFinal\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Tony\\.gradle\\caches\\transforms-2\\files-2.1\\d38f39e80d3ce6c3cd55683cceb0868d\\jetified-preference-v7-25.3.0.0\\res\\values-v14\\values-v14.xml",
+                    "from": {
+                        "startLines": "2,7,12,17,21,26,31,35,39",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,355,673,1019,1188,1500,1840,2006,2166",
+                        "endLines": "6,11,16,20,25,30,34,38,46",
+                        "endColumns": "12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "350,668,1014,1183,1495,1835,2001,2161,2614"
+                    }
+                }
+            ]
+        }
+    ]
+}

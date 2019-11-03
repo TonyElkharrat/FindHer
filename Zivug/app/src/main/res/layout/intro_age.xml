@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Month"
+        android:text="@string/Month"
         android:fontFamily="@font/aaa"
         android:textColor="#000"
         android:textSize="20sp"
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Day"
+        android:text="@string/Day"
         android:textColor="#000"
 
         android:fontFamily="@font/aaa"
@@ -59,7 +59,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Year"
+        android:text="@string/Year"
         android:fontFamily="@font/aaa"
         android:textColor="#000"
 
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="WHEN'S YOUR BIRTHDAY?"
+        android:text="@string/YOURBIRTHDAY"
 
         android:layout_marginTop="130dp"
         android:textColor="#000"

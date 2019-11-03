@@ -56,14 +56,14 @@ public class LevelReligionFragment extends Fragment implements View.OnClickListe
         {
             AnimationMaker.inflateAnimation(getContext(),nextbutton);
             nextbutton.setVisibility(View.VISIBLE);
-            levelOfReligion = "normal";
+            levelOfReligion = "Normal";
         }
 
         else if(view.getId() == R.id.level2)
         {
             AnimationMaker.inflateAnimation(getContext(),nextbutton);
             nextbutton.setVisibility(View.VISIBLE);
-            levelOfReligion = "traditionalist";
+            levelOfReligion = "Traditionalist";
 
         }
 
@@ -71,7 +71,7 @@ public class LevelReligionFragment extends Fragment implements View.OnClickListe
         {
             AnimationMaker.inflateAnimation(getContext(),nextbutton);
             nextbutton.setVisibility(View.VISIBLE);
-            levelOfReligion = "advanced";
+            levelOfReligion = "Advanced";
 
         }
 

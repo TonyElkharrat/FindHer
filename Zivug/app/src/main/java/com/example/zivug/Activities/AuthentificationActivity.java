@@ -44,25 +44,25 @@ public class AuthentificationActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
+        startService(newIntent);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null)
+        {
+            startSignInActivity();
+        }
 
-                if (user == null)
-                {
-                    startSignInActivity();
-                }
+        else
+        {
+            Intent intent = new Intent(AuthentificationActivity.this, ZivugActivity.class);
+            storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
-                else
-                {
-                    Intent intent = new Intent(AuthentificationActivity.this, ZivugActivity.class);
-                    storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
-                    final Intent newIntent = new Intent(AuthentificationActivity.this, ChatNotification.class);
-                    startService(newIntent);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
 
-                }
+        }
 
 
 

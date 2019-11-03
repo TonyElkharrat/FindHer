@@ -1,5 +1,51 @@
 <resources>
     <string name="app_name">Zivug</string>
-    <string name="facebook_app_id">683492095499119</string>
-    <string name="fb_login_protocol_scheme">fb683492095499119</string>
+    <string name="facebook_app_id" translatable="false">683492095499119</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb683492095499119</string>
+    <string name="since">Member since :2019</string>
+    <string name="Taccount">Type Account : Free</string>
+    <string name="religionLevel">Level of Religion :</string>
+    <string name="Age">Age :</string>
+    <string name="Email">E-mail :</string>
+    <string name="Month">Month</string>
+    <string name="Year">Year</string>
+    <string name="Day">Day</string>
+    <string name="YOURBIRTHDAY">WHEN\'S YOUR BIRTHDAY?</string>
+    <string name="gender">Choose your gender</string>
+    <string name="a_man">I\'m a man</string>
+    <string name="a_woman">I\'m a woman</string>
+    <string name="CReligion">Choose your level of Religion</string>
+    <string name="Traditionalist">Traditionalist</string>
+    <string name="religious">Normal</string>
+    <string name="orthodox">Advanced</string>
+    <string name="location">So where are you ?</string>
+    <string name="Locate">Locate me</string>
+    <string name="Welcome">Welcome to Zivug</string>
+    <string name="find">Find your love near you</string>
+    <string name="Start">Start</string>
+    <string name="range">Set the range age of your partner</string>
+    <string name="radius">Set the radius of the research</string>
+    <string name="Research">Research</string>
+    <string name="UpNow">Upload now</string>
+    <string name="UpWIFI">Upload for me when I\'ll be connect to Wi-Fi</string>
+    <string name="Km">Km</string>
+    <string name="photos">My photos</string>
+    <string name="Messages">Messages</string>
+    <string name="favoritesby">Favorites</string>
+    <string name="myLIKES">Favorites</string>
+    <string name="Search">Home</string>
+    <string name="Profile">Profile</string>
+    <string name="Logout">Log out</string>
+    <string name="Myphotos">My photos</string>
+    <string name="UserAccount">User Account</string>
+    <string name="ResetPassword">Reset Password</string>
+    <string name="RestP">We will send you a mail for reset your password</string>
+    <string name="RemoveAccount">Remove Account</string>
+    <string name="Del">Delete Your Account definitively</string>
+    <string name="Removepic">Remove user picture profile</string>
+    <string name="ClickPIC">Click for remove your profile picture</string>
+    <string name="UserSettings">User Settings</string>
+    <string name="Remind">Remind me about new partner</string>
+    <string name="REMIND_BOX">Click for remind you all 24 H about new partner connections</string>
+    <string name="Visit">Visit our website www.Zivug.com</string>
 </resources>

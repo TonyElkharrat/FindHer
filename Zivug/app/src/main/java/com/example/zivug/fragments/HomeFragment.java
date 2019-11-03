@@ -39,9 +39,9 @@ import java.util.EventListener;
 
 public class HomeFragment extends Fragment implements loadDataNotifier
 {
-     TextView cityTV;
-     RecyclerView recyclerView= null;
-     SparkButton searchButton;
+    TextView cityTV;
+    RecyclerView recyclerView= null;
+    SparkButton searchButton;
 
 
     @Nullable
@@ -128,16 +128,20 @@ public class HomeFragment extends Fragment implements loadDataNotifier
                             int minimumAge = getArguments().getInt("minimumAge");
                             int maximumAge = getArguments().getInt("maximumAge");
                             int radiusResearch = getArguments().getInt("radiusResearch");
+                            ArrayList<String> params = getArguments().getStringArrayList("levelOfReligion");
                             Location location = user.getLocation();
 
-                            if( Integer.valueOf(user.getAgeUser())>= minimumAge && Integer.valueOf(user.getAgeUser())<=maximumAge&& LocationHelper.isCityInRadius(radiusResearch*1000,Double.valueOf(location.getLongitude()),Double.valueOf(location.getLatitude())))
+                            for(int i=0;i<params.size();i++)
                             {
-                                allUsers.add(user);
+                                String s = params.get(i);
+                                if (user.getLevelOfReligion().equals(s)&&Integer.valueOf(user.getAgeUser()) >= minimumAge && Integer.valueOf(user.getAgeUser()) <= maximumAge && LocationHelper.isCityInRadius(radiusResearch * 1000, Double.valueOf(location.getLongitude()), Double.valueOf(location.getLatitude()))) {
+                                    allUsers.add(user);
+                                }
                             }
                         }
 
                         else
-                            {
+                        {
                             allUsers.add(user);
                         }
                     }

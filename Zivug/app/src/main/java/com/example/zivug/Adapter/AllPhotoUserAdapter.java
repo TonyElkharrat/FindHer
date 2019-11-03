@@ -70,7 +70,7 @@ public class AllPhotoUserAdapter extends RecyclerView.Adapter<AllPhotoUserAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolderAllPhotoOFUser holder, int position)
     {
-        
+
         Picasso.get().load(Uri.parse(allPhotos.get(position))).into(holder.photo);
     }
 

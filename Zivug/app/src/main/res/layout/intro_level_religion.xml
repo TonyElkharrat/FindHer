@@ -13,7 +13,7 @@
         android:paddingTop="130dp"
         android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
-        android:text="Choose your level of Religion"
+        android:text="@string/CReligion"
         android:textColor="#000"
         android:fontFamily="@font/aaa"
         android:textSize="25sp"
@@ -71,7 +71,7 @@
             android:gravity="center"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/aaa"
-            android:text="Normal"
+            android:text="@string/Traditionalist"
             android:textColor="#000"
             android:textSize="20sp"
             android:layout_weight="1"/>
@@ -82,7 +82,7 @@
             android:gravity="center"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/aaa"
-            android:text="Traditionalist"
+            android:text="@string/religious"
             android:textColor="#000"
             android:textSize="20sp"
             android:layout_weight="1"/>
@@ -95,7 +95,7 @@
         android:layout_below="@id/lay_gen"
         android:textSize="20sp"
         android:textColor="#000"
-        android:text="Advanced"
+        android:text="@string/orthodox"
         android:layout_marginTop="30dp"
         android:layout_weight="1"/>
 

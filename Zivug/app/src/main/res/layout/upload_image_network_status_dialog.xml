@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Send Now"
+                android:text="@string/UpNow"
                 android:fontFamily="@font/aaaaaaa"
                 android:layout_centerVertical="true"
                 android:layout_margin="30dp"
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aaaaaaa"
-                android:text="Send for me when I'll be connect to Wi-Fi"
+                android:text="@string/UpWIFI"
                 android:layout_margin="30dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/YesButton"

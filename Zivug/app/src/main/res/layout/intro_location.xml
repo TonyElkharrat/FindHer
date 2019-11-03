@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:layout_centerHorizontal="true"
-        android:text="So where are you ?"
+        android:text="@string/location"
         android:id="@+id/where_are_you_tv"
         android:textColor="#000"
         android:fontFamily="@font/aaa"

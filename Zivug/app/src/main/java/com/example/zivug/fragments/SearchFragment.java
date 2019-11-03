@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,13 +26,18 @@ import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.example.zivug.R;
 import com.spark.submitbutton.SubmitButton;
 
+import java.util.ArrayList;
+
 public class SearchFragment extends Fragment implements View.OnClickListener
 {
     TextView minimumAgeTV;
     TextView maximumAgeTV;
     TextView radiusResearchTV;
+    CheckBox normal;
     BubbleThumbRangeSeekbar ageSeekbar;
     BubbleThumbSeekbar radiusSearchSeekBar;
+    CheckBox traditionalistCb;
+    CheckBox advancedCb;
 
     private  int minimumValueAge , maximumValueAge,radiusResearch;
     @Nullable
@@ -45,8 +53,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener
         radiusResearchTV = view.findViewById(R.id.tvMaxdistance);
         radiusSearchSeekBar = view.findViewById(R.id.rangeSeekbar4);
 
+        traditionalistCb = view.findViewById(R.id.traditionalistLevel);
+        normal =  view.findViewById(R.id.normalLevel);
+        advancedCb =  view.findViewById(R.id.advancedLevel);
+
         researchButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
+        minimumValueAge= 18;
+        minimumValueAge= 80;
+        radiusResearch =1;
 
         ageSeekbar.setVerticalScrollbarPosition(CrystalSeekbar.Position.LEFT);
 
@@ -93,6 +108,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view)
     {
+        final ArrayList params = new ArrayList();
+
         if (view.getId() == R.id.research_button)
         {
             new Thread(new Runnable() {
@@ -101,16 +118,29 @@ public class SearchFragment extends Fragment implements View.OnClickListener
                 {
                     try
                     {
+                        if(normal.isChecked())
+                        {
+                            params.add("Normal");
+                        }
+                        if(advancedCb.isChecked())
+                        {
+                            params.add("Advanced");
+                        }
+
+                        if(traditionalistCb.isChecked())
+                        {
+                            params.add("Traditionalist");
+                        }
                         Thread.sleep(1000);
                         Bundle bundle = new Bundle();
                         bundle.putInt("minimumAge",minimumValueAge);
                         bundle  .putInt("maximumAge",maximumValueAge);
                         bundle .putInt("radiusResearch",radiusResearch);
+                        bundle.putStringArrayList("levelOfReligion",params);
                         HomeFragment homeFragment = new HomeFragment();
                         homeFragment.setArguments(bundle);
 
                         ((AppCompatActivity) getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.central_layout, homeFragment).commit();
-
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -170,4 +200,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener
                     R.drawable.teenager_women));
         }
     }
+
+
 }

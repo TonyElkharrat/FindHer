@@ -17,7 +17,7 @@
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Set the range age of your partner"
+    android:text="@string/range"
     android:textColor="#000"
     android:fontFamily="@font/aaaaaaaa"
     android:textSize="20sp"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="#000"
-        android:text="Set the radius of the research"
+        android:text="@string/radius"
         android:fontFamily="@font/aaaaaaaa"
         android:layout_alignLeft="@id/tvMin"
 
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/km"
         android:textSize="18sp"
-        android:text="Km"
+        android:text="@string/Km"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:textColor="#000"
@@ -134,7 +134,7 @@
     <com.spark.submitbutton.SubmitButton
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Research"
+        android:text="@string/Research"
         android:id="@+id/research_button"
         android:textColor="@color/gray"
         app:sub_btn_background="@color/white"
@@ -144,5 +144,35 @@
         app:sub_btn_ripple_color="@color/blueClear"
         app:sub_btn_tick_color="@color/white"
         android:layout_alignParentBottom="true"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/km"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
+
+
+        <CheckBox
+            android:id="@+id/normalLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/salmon"
+            android:text="Normal" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Traditionalist"
+            android:buttonTint="@color/salmon"
+            android:id="@+id/traditionalistLevel"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Advanced"
+            android:buttonTint="@color/salmon"
+            android:id="@+id/advancedLevel"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

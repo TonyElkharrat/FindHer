@@ -141,7 +141,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener
                     Picasso.get().load(user.getUrlPicture()).into(partnerPicture);
                 }
 
-                    statusUser.setText(user.getStatus());
+                statusUser.setText(user.getStatus());
 
             }
 
@@ -156,10 +156,10 @@ public class ChatFragment extends Fragment implements View.OnClickListener
 
     private void readMessages()
     {
-               MessageAdapter adapter = new MessageAdapter(getContext(), allMessage);
-                recyclerView.smoothScrollToPosition(adapter.getItemCount());
-                recyclerView.scrollToPosition(adapter.getItemCount() - 1);
-                recyclerView.setAdapter(adapter);
+        MessageAdapter adapter = new MessageAdapter(getContext(), allMessage);
+        recyclerView.smoothScrollToPosition(adapter.getItemCount());
+        recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -221,8 +221,8 @@ public class ChatFragment extends Fragment implements View.OnClickListener
 
         if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK&& data!=null && data.getData()!=null)
         {
-           byte[] fileInBytes = BitmapCompresser.getCompressImage(getContext(),data.getData());
-           uploadImage(fileInBytes);
+            byte[] fileInBytes = BitmapCompresser.getCompressImage(getContext(),data.getData());
+            uploadImage(fileInBytes);
 
         }
     }

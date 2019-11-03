@@ -1,38 +1,38 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="User Account">
+        android:title="@string/UserAccount">
 
         <Preference
             android:key="change_password_preference"
-            android:title="Reset Password "
-            android:summary="We will send you a mail for reset your password"
+            android:title="@string/ResetPassword"
+            android:summary="@string/RestP"
             />
 
         <Preference
             android:key="remove_user_account"
-            android:title="Remove Account"
-            android:summary="Delete Your Account definitively"
+            android:title="@string/RemoveAccount"
+            android:summary="@string/Del"
 
             />
         <Preference
             android:key="remove_user_profil_picture"
-            android:title="Remove user picture profil"
-            android:summary="Click for remove your profil picture"
+            android:title="@string/Removepic"
+            android:summary="@string/ClickPIC"
             />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="User Settings">
+        android:title="@string/UserSettings">
 
         <CheckBoxPreference
             android:key="remind_notification"
-            android:title="Remind me about new partner"
-            android:summary="Click for remind you all 24 H about new partner connections"
+            android:title="@string/Remind"
+            android:summary="@string/REMIND_BOX"
             />
         <Preference
-            android:title="Visit our website www.Zivug.com ">
+            android:title="@string/Visit">
             <intent android:action="android.intent.action.VIEW"
                 android:data="http://google.com/" />
         </Preference>

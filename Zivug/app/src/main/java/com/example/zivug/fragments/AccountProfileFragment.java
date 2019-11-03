@@ -193,9 +193,9 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
                 StorageReference filePath = storageReference.child(FirebaseAuth.getInstance().getUid()+"jpg");
 
-                     uploadPhotoProfil(imageUri,filePath);
+                uploadPhotoProfil(imageUri,filePath);
 
-                }
+            }
 
         }
 
@@ -205,7 +205,7 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
             m_numberOfPhotos++;
             StorageReference filePath = storageUserphotoReference.child(m_numberOfPhotos + ".jpg");
             if(data.getData()!=null)
-            photoToUpload = data.getData();
+                photoToUpload = data.getData();
             boolean connectedToWifi = WifiManager.checkWifiOnAndConnected(getContext());
 
             if(connectedToWifi)
@@ -258,7 +258,7 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
                     {
                         if(task.isSuccessful())
                         {
-                         AnimationMaker.updateUI(getActivity(),task);
+                            AnimationMaker.updateUI(getActivity(),task);
                         }
                     }
                 });
@@ -353,8 +353,8 @@ public class AccountProfileFragment extends Fragment implements View.OnClickList
         else if(view.getId() == R.id.uploadButton)
         {
 
-               Intent intent = FileHelper.getFilefromMemory();
-               startActivityForResult(intent, UPLOAD_PHOTO);
+            Intent intent = FileHelper.getFilefromMemory();
+            startActivityForResult(intent, UPLOAD_PHOTO);
 
 
         }
